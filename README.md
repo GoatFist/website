@@ -19,7 +19,9 @@ npm run build     # build/, run with `node build` (PORT, default 3000)
 
 ## Brand
 The logo, favicons and og image come from the brand kit (`GoatFist/brand`): `brand/vectors/{icon,goatfist,interactive}.svg` →
-`src/lib/brand/`, `brand/dist/{favicon/*,social/og-image.png,svg/*}` → `static/brand/`.
+`src/lib/brand/`, `brand/dist/favicon/*` → `static/brand/`, `brand/dist/social/og-image.png` → `src/lib/assets/og-studio.png`; the game's
+`gam-brand/dist/web/*.webp` → `static/global-assault/`, `gam-brand/dist/social/og-image.png` → `src/lib/assets/og-global-assault.png`.
+The og images are imported, so their URL carries a content hash and a new one is never served from a cache.
 
 ## Deploy
 Dokploy, project `goatfist`, application `website`: built from this repository's `Dockerfile` on every push to `main` (auto deploy),

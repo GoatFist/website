@@ -4,6 +4,8 @@
 	import { page } from '$app/state';
 	import SiteFooter from '#lib/SiteFooter.svelte';
 	import SiteHeader from '#lib/SiteHeader.svelte';
+	import ogGame from '#lib/assets/og-global-assault.png';
+	import ogStudio from '#lib/assets/og-studio.png';
 	import { site, x } from '#lib/site.ts';
 	import type { LayoutProps } from './$types';
 
@@ -21,7 +23,7 @@
 	<meta property="og:locale" content="pt_BR" />
 	<meta
 		property="og:image"
-		content={site.url + (page.url.pathname.startsWith('/global-assault') ? '/global-assault/og-image.png' : '/brand/og-image.png')}
+		content={site.url + (page.url.pathname.startsWith('/global-assault') ? ogGame : ogStudio)}
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content={x.handle} />
