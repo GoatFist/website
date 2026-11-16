@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Icon from './Icon.svelte';
 	import Logo from './Logo.svelte';
 	import { footerLinks } from './site.ts';
@@ -34,6 +35,12 @@
 				</nav>
 			{/each}
 		</div>
+		{#if page.url.pathname.startsWith('/global-assault')}
+			<p class="note">
+				O Global Assault é um projeto da comunidade, sem fins lucrativos, e uma homenagem viva a um FPS clássico que saiu
+				do ar. Mantemos o jogo de pé para todo mundo jogar, de graça.
+			</p>
+		{/if}
 		<div class="bottom">
 			<p>© {year} GOATFIST Interactive</p>
 			<p>Sem cookies, anúncios ou rastreadores.</p>
@@ -100,6 +107,16 @@
 		overflow: hidden;
 		clip-path: inset(50%);
 		white-space: nowrap;
+	}
+
+	.note {
+		max-width: var(--measure);
+		margin: 0;
+		padding-block: var(--space-6);
+		border-top: 1px solid var(--rule);
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		line-height: 1.6;
 	}
 
 	.bottom {
