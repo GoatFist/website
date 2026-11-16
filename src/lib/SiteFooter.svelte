@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from './Icon.svelte';
 	import Logo from './Logo.svelte';
 	import { footerLinks } from './site.ts';
 
@@ -19,7 +20,11 @@
 						{#each group.links as link (link.href)}
 							<li>
 								{#if link.href.startsWith('http')}
-									<a href={link.href} target="_blank" rel="noopener">{link.label} <span class="ext">↗</span></a>
+									<a href={link.href} target="_blank" rel="noopener">
+										{link.label}
+										<Icon name="external" size={14} />
+										<span class="sr-only">(abre em outra aba)</span>
+									</a>
 								{:else}
 									<a href={link.href}>{link.label}</a>
 								{/if}
@@ -39,61 +44,62 @@
 <style>
 	.footer {
 		margin-top: auto;
-		border-top: 1px solid var(--ui-border);
-		background: var(--ui-muted);
+		background: var(--surface-1);
 		font-size: var(--text-sm);
 	}
 
 	.top {
 		display: grid;
 		grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
-		gap: var(--space-7) var(--space-6);
-		padding-block: var(--space-7);
+		gap: var(--space-8) var(--space-6);
+		padding-block: var(--space-9) var(--space-8);
 	}
 
 	.brand {
 		display: inline-flex;
-		font-size: 3.5rem;
 		max-width: 100%;
-		--logo-icon: var(--mark);
+		font-size: 3.5rem;
 	}
 
 	.about p {
 		max-width: 22rem;
 		margin: var(--space-5) 0 0;
-		color: var(--ui-muted-foreground);
+		color: var(--text-muted);
 	}
 
 	.title {
-		margin-bottom: var(--space-3);
-		font-family: var(--font-display);
-		font-size: var(--text-xs);
-		font-weight: 700;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--ui-muted-foreground);
+		margin-bottom: var(--space-4);
+		color: var(--text-muted);
 	}
 
 	ul {
 		display: grid;
-		gap: var(--space-2);
+		gap: var(--space-3);
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
 	li a {
-		color: var(--ui-foreground);
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		color: var(--text);
 		text-decoration: none;
 	}
 
-	.ext {
-		color: var(--ui-muted-foreground);
-		font-size: 0.85em;
+	li a:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
 	}
 
-	li a:hover {
-		color: var(--accent);
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
 
 	.bottom {
@@ -102,8 +108,8 @@
 		justify-content: space-between;
 		gap: var(--space-2) var(--space-5);
 		padding-block: var(--space-5);
-		border-top: 1px solid var(--ui-border);
-		color: var(--ui-muted-foreground);
+		border-top: 1px solid var(--rule);
+		color: var(--text-muted);
 		font-size: var(--text-xs);
 	}
 
@@ -114,6 +120,7 @@
 	@media (max-width: 760px) {
 		.top {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+			padding-block: var(--space-8) var(--space-7);
 		}
 
 		.about {

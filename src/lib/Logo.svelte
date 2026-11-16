@@ -24,7 +24,7 @@
 		align-items: center;
 		gap: 0.55em;
 		height: 1em;
-		color: var(--ui-foreground);
+		color: var(--text);
 	}
 
 	.logo :global(svg) {
@@ -55,6 +55,6 @@
 
 	.interactive {
 		height: 0.11em;
-		color: var(--ui-muted-foreground);
+		color: var(--text-muted);
 	}
 </style>

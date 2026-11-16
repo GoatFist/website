@@ -1,49 +1,73 @@
 @layer ui-sdk;
 
-@import '@fontsource-variable/inter';
 @import '@fontsource-variable/oxanium';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/400-italic.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
 
+/* Tokens: DESIGN.md is the reference. Components use the semantic tokens, never a primitive or a raw hex. */
 :root {
 	color-scheme: light dark;
 
-	/* The brand kit's palette (GoatFist/brand, brand.json). */
+	/* Primitives (the brand kit's palette, GoatFist/brand brand.json). */
 	--night: #0b0d10;
+	--night-1: #111419;
+	--night-2: #181c22;
+	--night-rule: #23272e;
 	--bone: #f0f0f0;
 	--steel: #979da5;
 	--slate: #5b616a;
+	--paper: #ffffff;
+	--paper-1: #f4f4f2;
+	--paper-2: #ebebe8;
+	--paper-rule: #e2e2de;
 	--volt: #e2ff04;
 	--olive: #5b6b00;
 
-	/* Surfaces and text. */
-	--ui-background: light-dark(#ffffff, var(--night));
-	--ui-foreground: light-dark(var(--night), var(--bone));
-	--ui-muted: light-dark(#f4f4f2, #14171c);
-	--ui-muted-foreground: light-dark(var(--slate), var(--steel));
-	--ui-border: light-dark(#e4e4e1, #23272e);
+	/* Semantic. Volt is 1.1:1 on white: on paper it is only a fill under night text; text and marks take olive. */
+	--surface: light-dark(var(--paper), var(--night));
+	--surface-1: light-dark(var(--paper-1), var(--night-1));
+	--surface-2: light-dark(var(--paper-2), var(--night-2));
+	--text: light-dark(var(--night), var(--bone));
+	--text-muted: light-dark(var(--slate), var(--steel));
+	--rule: light-dark(var(--paper-rule), var(--night-rule));
+	--action: var(--volt);
+	--action-text: var(--night);
+	--action-hover: #d2ee00;
+	/* Volt barely separates from white: on paper the button draws its edge. */
+	--action-edge: light-dark(#a8bf00, transparent);
+	--link: light-dark(var(--olive), var(--volt));
+	--focus: light-dark(var(--olive), var(--volt));
+
+	/* ui-sdk's tokens, mapped (set nowhere else). */
+	--ui-background: var(--surface);
+	--ui-foreground: var(--text);
+	--ui-muted: var(--surface-2);
+	--ui-muted-foreground: var(--text-muted);
+	--ui-border: var(--rule);
 	--ui-input: light-dark(#8b8f96, #6b717b);
-	--ui-primary: var(--volt);
-	--ui-primary-foreground: var(--night);
-	--ui-ring: light-dark(var(--olive), var(--volt));
-	--surface: light-dark(#ffffff, #111419);
-	--surface-raised: light-dark(#fafaf9, #161a20);
-	/* Volt is 1.1:1 on white: on light grounds it is only a fill under night text; text and marks take olive. */
-	--accent: light-dark(var(--olive), var(--volt));
-	--accent-soft: light-dark(#f6ffc2, #171b06);
-	--mark: light-dark(var(--night), var(--volt));
+	--ui-primary: var(--action);
+	--ui-primary-foreground: var(--action-text);
+	--ui-ring: var(--focus);
+	--ui-radius: var(--radius-1);
+	--ui-font-sans: var(--font-body);
 
 	/* Type. */
 	--font-display: 'Oxanium Variable', ui-sans-serif, system-ui, sans-serif;
-	--font-body: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-	--ui-font-sans: var(--font-body);
+	--font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
 	--text-xs: 0.8125rem;
 	--text-sm: 0.9375rem;
 	--text-md: 1.0625rem;
-	--text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
-	--text-xl: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
-	--text-2xl: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
-	--text-3xl: clamp(2.25rem, 1.5rem + 3.6vw, 4.25rem);
+	--text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+	--text-xl: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+	--text-2xl: clamp(1.875rem, 1.4rem + 2vw, 3rem);
+	--text-3xl: clamp(2.5rem, 1.4rem + 5vw, 5.5rem);
+	--measure: 38rem;
 
-	/* Space, shape, layout. */
+	/* Space (4 8 12 16 24 32 48 64 96 128 160 px). */
 	--space-1: 0.25rem;
 	--space-2: 0.5rem;
 	--space-3: 0.75rem;
@@ -51,14 +75,19 @@
 	--space-5: 1.5rem;
 	--space-6: 2rem;
 	--space-7: 3rem;
-	--space-section: clamp(4rem, 3rem + 5vw, 7.5rem);
-	--radius-sm: 0.25rem;
-	--radius-md: 0.5rem;
-	--radius-lg: 0.875rem;
-	--ui-radius: var(--radius-sm);
-	--content: 72rem;
-	--gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
-	--header-height: 4rem;
+	--space-8: 4rem;
+	--space-9: 6rem;
+	--space-10: 8rem;
+	--space-11: 10rem;
+	--section: clamp(var(--space-9), 4rem + 8vw, var(--space-11));
+
+	/* Shape and layout. */
+	--radius-0: 0;
+	--radius-1: 2px;
+	--radius-2: 4px;
+	--content: 76rem;
+	--gutter: clamp(1.25rem, 0.75rem + 2.5vw, 2.5rem);
+	--header-height: 4.5rem;
 }
 
 :root[data-theme='light'] {
@@ -86,9 +115,10 @@ body {
 	min-height: 100dvh;
 	display: flex;
 	flex-direction: column;
-	background: var(--ui-background);
-	color: var(--ui-foreground);
+	background: var(--surface);
+	color: var(--text);
 	font: 400 var(--text-md) / 1.65 var(--font-body);
+	font-kerning: normal;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -96,9 +126,9 @@ h1,
 h2,
 h3 {
 	font-family: var(--font-display);
-	font-weight: 700;
+	font-weight: 500;
 	line-height: 1.08;
-	letter-spacing: -0.015em;
+	letter-spacing: -0.02em;
 	text-wrap: balance;
 	margin: 0 0 var(--space-4);
 }
@@ -112,8 +142,10 @@ h2 {
 }
 
 h3 {
-	font-size: var(--text-lg);
+	font-size: var(--text-xl);
+	font-weight: 600;
 	line-height: 1.25;
+	letter-spacing: -0.01em;
 }
 
 p {
@@ -122,13 +154,13 @@ p {
 }
 
 a {
-	color: var(--accent);
+	color: var(--link);
 	text-underline-offset: 0.2em;
 	text-decoration-thickness: 1px;
 }
 
 :focus-visible {
-	outline: 2px solid var(--ui-ring);
+	outline: 2px solid var(--focus);
 	outline-offset: 2px;
 }
 
@@ -144,80 +176,66 @@ svg {
 }
 
 .section {
-	padding-block: var(--space-section);
-}
-
-.eyebrow {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--space-2);
-	margin: 0 0 var(--space-4);
-	color: var(--accent);
-	font-family: var(--font-display);
-	font-size: var(--text-xs);
-	font-weight: 700;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-}
-
-.eyebrow::before {
-	content: '';
-	width: 1.25rem;
-	height: 2px;
-	background: currentColor;
+	padding-block: var(--section);
 }
 
 .lead {
+	max-width: var(--measure);
 	font-size: var(--text-lg);
-	color: var(--ui-muted-foreground);
-	max-width: 38rem;
+	line-height: 1.55;
+	color: var(--text-muted);
 }
 
+/* The one primary action of a view (DESIGN.md: Button, primary). */
 .btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: var(--space-2);
-	min-height: 2.875rem;
+	min-height: 3rem;
 	padding: 0 var(--space-5);
-	border: 1px solid transparent;
-	border-radius: var(--radius-sm);
-	font-family: var(--font-display);
-	font-size: var(--text-sm);
-	font-weight: 700;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
+	border: 1px solid var(--action-edge);
+	border-radius: var(--radius-1);
+	background: var(--action);
+	color: var(--action-text);
+	font-size: var(--text-md);
+	font-weight: 500;
 	text-decoration: none;
 	white-space: nowrap;
-	transition:
-		background-color 0.15s,
-		border-color 0.15s,
-		transform 0.15s;
+	transition: background-color 0.15s;
 }
 
-.btn-primary {
-	background: var(--ui-primary);
-	color: var(--ui-primary-foreground);
-	/* Volt barely separates from white: the light theme draws its edge. */
-	border-color: light-dark(#a8bf00, transparent);
+.btn:hover {
+	background: var(--action-hover);
 }
 
-.btn-primary:hover {
-	background: #d2ee00;
+/* A secondary action: text with an arrow, never a second boxed button. */
+.link-arrow {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	min-height: 3rem;
+	color: var(--text);
+	font-weight: 500;
+	text-decoration: underline;
+	text-decoration-color: var(--rule);
+	text-underline-offset: 0.35em;
+	transition: text-decoration-color 0.15s;
 }
 
-.btn-secondary {
-	border-color: var(--ui-border);
-	color: var(--ui-foreground);
-	background: var(--surface);
+.link-arrow:hover {
+	text-decoration-color: currentColor;
 }
 
-.btn-secondary:hover {
-	border-color: var(--ui-input);
-}
-
-.btn:active {
-	transform: translateY(1px);
+/* Game voice: a mono label over a readout or a panel. */
+.label {
+	margin: 0;
+	font-family: var(--font-mono);
+	font-size: var(--text-xs);
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--text-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -225,7 +243,8 @@ svg {
 		scroll-behavior: auto;
 	}
 
-	.btn {
+	.btn,
+	.link-arrow {
 		transition: none;
 	}
 }

@@ -6,25 +6,16 @@
 	const description =
 		'A GOATFIST Interactive é um estúdio independente brasileiro. Estamos fazendo o Global Assault, um FPS online para jogar no celular.';
 
-	const facts = [
-		{ term: 'Gênero', value: 'FPS online' },
-		{ term: 'Plataforma', value: 'Celular' },
-		{ term: 'Status', value: 'Beta fechado em breve' }
-	];
-
 	const values = [
 		{
-			n: '01',
 			title: 'Servidor próprio',
 			text: 'Os servidores do jogo são nossos. Assim a gente cuida da qualidade das partidas e corrige bug e trapaça sem esperar ninguém.'
 		},
 		{
-			n: '02',
 			title: 'Celular primeiro',
 			text: 'Começamos pelo celular, com controles e telas pensados para jogar com os dedos. Uma versão para PC pode vir depois.'
 		},
 		{
-			n: '03',
 			title: 'Sem anúncio',
 			text: 'Nenhum anúncio no meio da partida e nenhuma ferramenta de rastreamento. O jogo guarda só o que precisa para funcionar.'
 		}
@@ -40,119 +31,130 @@
 </svelte:head>
 
 <section class="hero">
-	<div class="mark" aria-hidden="true"><Logo parts="icon" /></div>
-	<div class="wrap hero-inner">
-		<p class="eyebrow">Estúdio independente</p>
-		<h1>Jogos de tiro para jogar com a galera.</h1>
-		<p class="lead">
-			A GOATFIST Interactive é um estúdio pequeno e independente. Nosso primeiro jogo é o
-			<strong>Global Assault</strong>, um FPS online que estamos levando para o celular.
-		</p>
-		<div class="actions">
-			<a class="btn btn-primary" href="/global-assault">Conheça Global Assault <Icon name="arrow" size={18} /></a>
-			<a class="btn btn-secondary" href="#estudio">Sobre o estúdio</a>
-		</div>
-	</div>
-</section>
-
-<section class="section" aria-labelledby="ga-title">
-	<div class="wrap">
-		<a class="game" href="/global-assault">
-			<div class="game-copy">
-				<p class="eyebrow">Em desenvolvimento</p>
-				<h2 id="ga-title">
-					<img src="/global-assault/logotype-gold.webp" alt="Global Assault" width="1200" height="315" />
-				</h2>
-				<p>
-					Partidas rápidas em equipe, com os mapas e os modos de um FPS clássico. O beta fechado abre em breve
-					no Android.
-				</p>
-				<span class="more">Ver o jogo <Icon name="arrow" size={18} /></span>
+	<div class="wrap hero-grid">
+		<div class="hero-copy">
+			<h1>Jogos online para jogar com a galera.</h1>
+			<p class="lead">
+				A GOATFIST Interactive é um estúdio pequeno e independente. Nosso primeiro jogo é o
+				<strong>Global Assault</strong>, um FPS online que estamos levando para o celular.
+			</p>
+			<div class="actions">
+				<a class="btn" href="/global-assault">Conheça Global Assault <Icon name="arrow" size={18} /></a>
+				<a class="link-arrow" href="#estudio">Sobre o estúdio</a>
 			</div>
-			<dl class="facts">
-				{#each facts as fact (fact.term)}
-					<div>
-						<dt>{fact.term}</dt>
-						<dd>{fact.value}</dd>
-					</div>
-				{/each}
-			</dl>
-		</a>
+		</div>
+		<div class="mark" aria-hidden="true"><Logo parts="icon" /></div>
 	</div>
 </section>
 
-<section id="estudio" class="section studio" aria-labelledby="studio-title">
-	<div class="wrap">
-		<p class="eyebrow">O estúdio</p>
+<section class="game" aria-labelledby="ga-title">
+	<img
+		class="art"
+		src="/global-assault/key-art-1920.webp"
+		srcset="/global-assault/key-art-960.webp 960w, /global-assault/key-art-1920.webp 1920w"
+		sizes="100vw"
+		alt=""
+		width="1916"
+		height="820"
+		loading="lazy"
+	/>
+	<div class="wrap game-copy">
+		<h2 id="ga-title">
+			<img src="/global-assault/logotype-gold.webp" alt="Global Assault" width="1200" height="315" loading="lazy" />
+		</h2>
+		<p class="facts">FPS online · Celular · Beta fechado em breve</p>
+		<p>
+			Partidas rápidas em equipe, com os mapas e os modos de um FPS clássico. O beta fechado abre em breve no Android.
+		</p>
+		<a class="link-arrow on-art" href="/global-assault">Ver o jogo <Icon name="arrow" size={18} /></a>
+	</div>
+</section>
+
+<section id="estudio" class="section" aria-labelledby="studio-title">
+	<div class="wrap studio">
 		<h2 id="studio-title">Como trabalhamos</h2>
-		<ol class="values">
-			{#each values as v (v.n)}
-				<li>
-					<span class="n">{v.n}</span>
+		<div class="rows">
+			{#each values as v (v.title)}
+				<article>
 					<h3>{v.title}</h3>
 					<p>{v.text}</p>
-				</li>
+				</article>
 			{/each}
-		</ol>
+		</div>
 	</div>
 </section>
 
 <style>
 	.hero {
-		position: relative;
 		overflow: hidden;
-		padding-block: clamp(4rem, 3rem + 8vw, 9rem);
-		border-bottom: 1px solid var(--ui-border);
-		background:
-			radial-gradient(45rem 28rem at 78% 30%, var(--accent-soft), transparent 70%),
-			var(--ui-background);
+		padding-block: var(--section);
+		border-bottom: 1px solid var(--rule);
 	}
 
-	.mark {
-		position: absolute;
-		right: max(-6rem, calc((100vw - var(--content)) / 2 - 4rem));
-		top: 50%;
-		translate: 0 -50%;
-		font-size: clamp(16rem, 34vw, 30rem);
-		--logo-icon: var(--mark);
-		pointer-events: none;
+	.hero-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+		align-items: center;
+		gap: var(--space-8);
 	}
 
-	.hero-inner {
-		position: relative;
-	}
-
-	.hero h1 {
-		max-width: 13ch;
+	h1 {
+		max-width: 12ch;
+		margin-bottom: var(--space-6);
 	}
 
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-3);
-		margin-top: var(--space-6);
+		align-items: center;
+		gap: var(--space-3) var(--space-6);
+		margin-top: var(--space-7);
+	}
+
+	/* The goat as a quiet mark in surface tone: the headline is the one dominant element. */
+	.mark {
+		justify-self: end;
+		margin-right: calc(var(--gutter) * -1 - 4rem);
+		font-size: clamp(14rem, 30vw, 28rem);
+		--logo-icon: var(--surface-2);
 	}
 
 	.game {
-		display: grid;
-		grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-		gap: var(--space-7);
+		position: relative;
+		isolation: isolate;
+		display: flex;
 		align-items: center;
-		padding: clamp(1.5rem, 1rem + 3vw, 3rem);
-		border: 1px solid var(--ui-border);
-		border-radius: var(--radius-lg);
-		background: var(--surface);
-		color: inherit;
-		text-decoration: none;
-		transition: border-color 0.15s;
+		min-height: min(80vh, 46rem);
+		padding-block: var(--section);
+		background: var(--night);
+		color: var(--bone);
 	}
 
-	.game:hover {
-		border-color: var(--accent);
+	.art {
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		object-fit: cover;
+		object-position: 70% 30%;
+	}
+
+	/* A scrim, not decoration: it keeps the copy readable over any crop of the art. */
+	.game::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: linear-gradient(90deg, color-mix(in srgb, var(--night) 92%, transparent) 0%, color-mix(in srgb, var(--night) 60%, transparent) 50%, color-mix(in srgb, var(--night) 0%, transparent) 80%);
+	}
+
+	.game-copy > * {
+		max-width: 30rem;
 	}
 
 	.game h2 {
-		max-width: 26rem;
 		margin-bottom: var(--space-5);
 	}
 
@@ -162,104 +164,82 @@
 		height: auto;
 	}
 
-	.game-copy p:not(.eyebrow) {
-		color: var(--ui-muted-foreground);
-		max-width: 34rem;
-	}
-
-	.more {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-2);
-		color: var(--accent);
-		font-family: var(--font-display);
-		font-size: var(--text-sm);
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-	}
-
 	.facts {
-		display: grid;
-		gap: var(--space-5);
-		margin: 0;
+		color: var(--steel);
+		font-size: var(--text-sm);
 	}
 
-	.facts div {
-		padding-left: var(--space-4);
-		border-left: 2px solid var(--accent);
-	}
-
-	dt {
-		font-size: var(--text-xs);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--ui-muted-foreground);
-	}
-
-	dd {
-		margin: 0;
-		font-family: var(--font-display);
+	.game p:not(.facts) {
+		color: var(--bone);
 		font-size: var(--text-lg);
-		font-weight: 700;
+		line-height: 1.55;
+	}
+
+	.on-art {
+		margin-top: var(--space-4);
+		color: var(--bone);
+		text-decoration-color: color-mix(in srgb, var(--bone) 40%, transparent);
 	}
 
 	.studio {
-		padding-top: 0;
-	}
-
-	.values {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+		gap: var(--space-8);
+		align-items: start;
+	}
+
+	.studio h2 {
+		position: sticky;
+		top: calc(var(--header-height) + var(--space-6));
+	}
+
+	.rows article {
+		display: grid;
+		grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
 		gap: var(--space-5);
-		margin: var(--space-6) 0 0;
-		padding: 0;
-		list-style: none;
+		padding-block: var(--space-6);
+		border-top: 1px solid var(--rule);
 	}
 
-	.values li {
-		padding: var(--space-6) var(--space-5);
-		border-top: 2px solid var(--ui-border);
+	.rows article:last-child {
+		border-bottom: 1px solid var(--rule);
 	}
 
-	.n {
-		display: block;
-		margin-bottom: var(--space-4);
-		font-family: var(--font-display);
-		font-size: var(--text-sm);
-		font-weight: 700;
-		color: var(--accent);
-	}
-
-	.values p {
+	.rows h3 {
 		margin: 0;
-		color: var(--ui-muted-foreground);
 	}
 
-	/* Beside the headline only where the two can't meet; behind it as a watermark below that. */
-	@media (max-width: 1180px) {
+	.rows p {
+		margin: 0;
+		max-width: var(--measure);
+		color: var(--text-muted);
+	}
+
+	@media (max-width: 960px) {
+		.hero-grid,
+		.studio {
+			grid-template-columns: 1fr;
+		}
+
 		.mark {
-			opacity: 0.1;
-			right: -5rem;
+			display: none;
 		}
-	}
 
-	@media (max-width: 900px) {
+		.studio h2 {
+			position: static;
+		}
 
-		.values {
+		.rows article {
 			grid-template-columns: 1fr;
-			gap: 0;
+			gap: var(--space-3);
 		}
 
-		.values li {
-			padding-inline: 0;
-		}
-	}
-
-	@media (max-width: 760px) {
 		.game {
-			grid-template-columns: 1fr;
-			gap: var(--space-6);
+			align-items: flex-end;
+		}
+
+		.game::after {
+			background: linear-gradient(0deg, color-mix(in srgb, var(--night) 95%, transparent) 15%, color-mix(in srgb, var(--night) 70%, transparent) 60%, color-mix(in srgb, var(--night) 35%, transparent) 100%);
 		}
 	}
 </style>

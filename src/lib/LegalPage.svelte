@@ -10,9 +10,9 @@
 
 <article class="wrap legal">
 	<header>
-		<p class="eyebrow">Global Assault · Documentos</p>
+		<p class="kicker">Global Assault</p>
 		<h1>{title}</h1>
-		{#if updated}<p class="date">Última atualização: {updated}</p>{/if}
+		{#if updated}<p class="date">Última atualização: <time>{updated}</time></p>{/if}
 	</header>
 	{@render children()}
 </article>
@@ -28,8 +28,24 @@
 		font-size: clamp(2rem, 5vw, 2.8rem);
 	}
 
+	header {
+		margin-bottom: var(--space-8);
+		padding-bottom: var(--space-6);
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.kicker {
+		margin-bottom: var(--space-4);
+		color: var(--text-muted);
+	}
+
+	.date time {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+	}
+
 	.date {
-		color: var(--ui-muted-foreground);
+		color: var(--text-muted);
 	}
 
 	.legal :global(section) {

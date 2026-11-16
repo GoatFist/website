@@ -56,6 +56,10 @@
 			tags: ['Rodadas', 'Infecção']
 		}
 	];
+
+	// Bomb mission is shown large; the other modes follow as rows.
+	const featured = modes[1];
+	const others = modes.filter((m) => m !== featured);
 </script>
 
 <svelte:head>
@@ -64,7 +68,13 @@
 	<meta property="og:title" content="Global Assault" />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="{site.url}/global-assault" />
-	<link rel="preload" as="image" href="/global-assault/key-art-1920.webp" imagesrcset="/global-assault/key-art-960.webp 960w, /global-assault/key-art-1920.webp 1920w" imagesizes="100vw" />
+	<link
+		rel="preload"
+		as="image"
+		href="/global-assault/key-art-1920.webp"
+		imagesrcset="/global-assault/key-art-960.webp 960w, /global-assault/key-art-1920.webp 1920w"
+		imagesizes="100vw"
+	/>
 </svelte:head>
 
 <section class="hero">
@@ -78,29 +88,26 @@
 		height="820"
 	/>
 	<div class="wrap hero-inner">
-		<p class="pill"><span class="dot" aria-hidden="true"></span> Beta fechado em breve · Android</p>
+		<p class="label status">Beta fechado em breve · Android</p>
 		<h1>
 			<img class="logotype" src="/global-assault/logotype-gold.webp" alt="Global Assault" width="1200" height="315" />
 		</h1>
 		<p class="tagline">O FPS clássico, agora no celular.</p>
-		<p class="lead">
-			Os mapas, as armas e os modos que muita gente jogou nos anos 2000, de volta com controles de toque e
-			servidores novos.
+		<p class="hero-lead">
+			Os mapas, as armas e os modos que muita gente jogou nos anos 2000, de volta com controles de toque e servidores
+			novos.
 		</p>
 		<div class="actions">
-			<a class="btn btn-primary" href={discord} target="_blank" rel="noopener">
+			<a class="btn" href={discord} target="_blank" rel="noopener">
 				<Icon name="chat" size={18} /> Entrar no Discord
 			</a>
-			<a class="btn btn-ghost" href="#modos">Modos de jogo</a>
+			<a class="link-arrow on-art" href="#modos">Modos de jogo <Icon name="arrow" size={18} /></a>
 		</div>
 	</div>
-</section>
-
-<section class="stats" aria-label="Em números">
-	<dl class="wrap">
+	<dl class="wrap readouts" aria-label="Em números">
 		{#each stats as s (s.label)}
 			<div>
-				<dt>{s.label}</dt>
+				<dt class="label">{s.label}</dt>
 				<dd>{s.value}</dd>
 			</div>
 		{/each}
@@ -110,7 +117,7 @@
 <section class="section" aria-labelledby="about-title">
 	<div class="wrap about">
 		<div>
-			<p class="eyebrow">O jogo</p>
+			<p class="label">O jogo</p>
 			<h2 id="about-title">O mesmo jogo, na palma da mão</h2>
 			<p class="lead">
 				O jeito como as armas atiram e o ritmo das partidas continuam iguais. Mudamos o que precisava mudar para jogar
@@ -123,7 +130,7 @@
 		</div>
 		<ul class="features">
 			{#each features as f (f)}
-				<li><span class="check"><Icon name="check" size={16} /></span>{f}</li>
+				<li>{f}</li>
 			{/each}
 		</ul>
 	</div>
@@ -131,63 +138,60 @@
 
 <section id="modos" class="section modes-section" aria-labelledby="modes-title">
 	<div class="wrap">
-		<p class="eyebrow">Combate</p>
+		<div class="panel-head">
+			<p class="label">Modos</p>
+			<p class="label">{String(modes.length).padStart(2, '0')} jogáveis</p>
+		</div>
 		<h2 id="modes-title">Modos de jogo</h2>
 		<p class="lead">São seis modos, todos já testados em partidas online.</p>
-		<ol class="modes">
-			{#each modes as m, i (m.name)}
+
+		<article class="featured">
+			<p class="label">Modo em destaque</p>
+			<h3>{featured.name}</h3>
+			<p class="featured-text">{featured.text}</p>
+			<p class="tags">{featured.tags.join(' / ')}</p>
+		</article>
+
+		<ul class="modes">
+			{#each others as m (m.name)}
 				<li>
-					<div class="mode-head">
-						<h3>{m.name}</h3>
-						<span class="n">{String(i + 1).padStart(2, '0')}</span>
-					</div>
+					<h3>{m.name}</h3>
 					<p>{m.text}</p>
-					<ul class="tags" aria-label="Características">
-						{#each m.tags as t (t)}<li>{t}</li>{/each}
-					</ul>
+					<p class="tags">{m.tags.join(' / ')}</p>
 				</li>
 			{/each}
-		</ol>
+		</ul>
 	</div>
 </section>
 
-<section class="section beta-section" aria-labelledby="beta-title">
+<section class="section" aria-labelledby="beta-title">
 	<div class="wrap">
 		<div class="beta">
 			<div>
-				<p class="eyebrow">Beta fechado</p>
+				<p class="label">Beta fechado</p>
 				<h2 id="beta-title">Quer jogar antes de todo mundo?</h2>
-				<p>
+				<p class="beta-text">
 					O beta fechado vai começar no Android, com algumas centenas de jogadores convidados. Sua conta e seu
 					progresso ficam salvos. Os convites saem pelo Discord, então entra lá para não perder.
 				</p>
 			</div>
-			<a class="btn btn-dark" href={discord} target="_blank" rel="noopener">
+			<a class="btn btn-on-action" href={discord} target="_blank" rel="noopener">
 				<Icon name="chat" size={18} /> Entrar no Discord
 			</a>
 		</div>
 	</div>
 </section>
 
-<section class="game-footer" aria-label="Global Assault">
-	<div class="wrap game-footer-inner">
-		<img src="/global-assault/logotype-gold.webp" alt="Global Assault" width="240" height="63" />
-		<nav aria-label="Global Assault">
-			<a href={discord} target="_blank" rel="noopener">Discord <Icon name="external" size={14} /></a>
-			<a href="/global-assault/privacy">Política de Privacidade</a>
-			<a href="/global-assault/terms">Termos de Uso</a>
-		</nav>
-	</div>
-</section>
-
 <style>
+	/* Game voice (DESIGN.md): the key art leads, mono readouts, panels, volt only on actions. */
 	.hero {
 		position: relative;
 		isolation: isolate;
 		display: flex;
-		align-items: flex-end;
-		min-height: min(88vh, 50rem);
-		padding-block: 7rem var(--space-7);
+		flex-direction: column;
+		justify-content: flex-end;
+		min-height: min(92vh, 56rem);
+		padding-top: var(--space-10);
 		overflow: hidden;
 		background: var(--night);
 		color: var(--bone);
@@ -198,51 +202,39 @@
 		inset: 0;
 		z-index: -2;
 		width: 100%;
-		height: 100%;
 		max-width: none;
+		height: 100%;
 		object-fit: cover;
 		object-position: 62% 25%;
 	}
 
-	/* The art is the same in both themes: the copy sits on a night scrim, so it reads on any crop. */
+	/* Scrims keep the copy readable over any crop of the art; they are not decoration. */
 	.hero::after {
 		content: '';
 		position: absolute;
 		inset: 0;
 		z-index: -1;
 		background:
-			linear-gradient(90deg, rgb(11 13 16 / 0.92) 0%, rgb(11 13 16 / 0.7) 45%, rgb(11 13 16 / 0.1) 75%),
-			linear-gradient(0deg, var(--night) 0%, transparent 40%);
+			linear-gradient(
+				90deg,
+				color-mix(in srgb, var(--night) 92%, transparent) 0%,
+				color-mix(in srgb, var(--night) 55%, transparent) 50%,
+				transparent 78%
+			),
+			linear-gradient(0deg, var(--night) 0%, transparent 35%);
 	}
 
-	.pill {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-2);
+	.hero .label {
+		color: var(--steel);
+	}
+
+	.status {
 		margin-bottom: var(--space-5);
-		padding: var(--space-1) var(--space-3);
-		border: 1px solid rgb(226 255 4 / 0.4);
-		border-radius: 999px;
-		background: rgb(226 255 4 / 0.08);
-		color: var(--volt);
-		font-family: var(--font-display);
-		font-size: var(--text-xs);
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-	}
-
-	.dot {
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 50%;
-		background: var(--volt);
-		box-shadow: 0 0 0 4px rgb(226 255 4 / 0.2);
 	}
 
 	h1 {
-		margin: 0 0 var(--space-3);
-		max-width: 34rem;
+		max-width: 32rem;
+		margin: 0 0 var(--space-4);
 	}
 
 	.logotype {
@@ -252,295 +244,217 @@
 	}
 
 	.tagline {
+		margin-bottom: var(--space-3);
 		font-family: var(--font-display);
 		font-size: var(--text-xl);
-		font-weight: 700;
-		margin-bottom: var(--space-3);
+		font-weight: 500;
 	}
 
-	.hero .lead {
-		color: #c4c8ce;
-		max-width: 34rem;
+	.hero-lead {
+		max-width: 32rem;
+		color: color-mix(in srgb, var(--bone) 80%, transparent);
+		font-size: var(--text-lg);
+		line-height: 1.55;
 	}
 
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-3);
+		align-items: center;
+		gap: var(--space-3) var(--space-6);
 		margin-top: var(--space-6);
 	}
 
-	.btn-ghost {
-		border-color: rgb(240 240 240 / 0.35);
+	.on-art {
 		color: var(--bone);
+		text-decoration-color: color-mix(in srgb, var(--bone) 40%, transparent);
 	}
 
-	.btn-ghost:hover {
-		border-color: var(--bone);
-	}
-
-	.stats {
-		background: var(--night);
-		color: var(--bone);
-		border-top: 1px solid #23272e;
-		border-bottom: 1px solid var(--ui-border);
-	}
-
-	.stats dl {
+	.readouts {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		margin: 0;
+		margin: var(--space-9) auto 0;
 	}
 
-	.stats div {
+	.readouts div {
 		display: flex;
-		flex-direction: column-reverse;
-		gap: var(--space-1);
-		padding: var(--space-6) var(--space-4);
-		border-left: 1px solid #23272e;
+		flex-direction: column;
+		gap: var(--space-2);
+		padding: var(--space-5) var(--space-5) var(--space-6) 0;
+		border-top: 1px solid var(--night-rule);
 	}
 
-	.stats div:first-child {
-		border-left: 0;
-		padding-left: 0;
+	.readouts div + div {
+		padding-left: var(--space-5);
+		border-left: 1px solid var(--night-rule);
 	}
 
-	.stats dt {
-		color: var(--steel);
-		font-size: var(--text-xs);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-	}
-
-	.stats dd {
+	.readouts dd {
 		margin: 0;
 		font-family: var(--font-display);
 		font-size: var(--text-2xl);
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 1;
-		color: var(--volt);
 	}
 
 	.about {
 		display: grid;
-		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-		gap: var(--space-7);
-		align-items: center;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+		gap: var(--space-9);
+		align-items: start;
+	}
+
+	.about .label {
+		margin-bottom: var(--space-5);
 	}
 
 	.features {
-		display: grid;
-		gap: var(--space-3);
 		margin: 0;
 		padding: 0;
 		list-style: none;
+		border-top: 1px solid var(--rule);
 	}
 
 	.features li {
-		display: flex;
-		align-items: center;
-		gap: var(--space-3);
-		padding: var(--space-3) var(--space-4);
-		border: 1px solid var(--ui-border);
-		border-radius: var(--radius-md);
-		background: var(--surface);
+		padding: var(--space-4) 0;
+		border-bottom: 1px solid var(--rule);
 		font-weight: 500;
 	}
 
-	.check {
-		display: grid;
-		place-items: center;
-		flex-shrink: 0;
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: var(--radius-sm);
-		background: var(--volt);
-		color: var(--night);
+	.modes-section {
+		background: var(--surface-1);
 	}
 
-	.modes-section {
-		background: var(--ui-muted);
-		border-block: 1px solid var(--ui-border);
+	.panel-head {
+		display: flex;
+		justify-content: space-between;
+		gap: var(--space-4);
+		margin-bottom: var(--space-6);
+		padding-bottom: var(--space-3);
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.featured {
+		display: grid;
+		gap: var(--space-4);
+		margin-top: var(--space-8);
+		padding: var(--space-7) var(--space-6);
+		background: var(--surface-2);
+	}
+
+	.featured h3 {
+		margin: 0;
+		font-size: var(--text-2xl);
+		font-weight: 500;
+	}
+
+	.featured-text {
+		max-width: var(--measure);
+		margin: 0;
+		font-size: var(--text-lg);
+		line-height: 1.55;
 	}
 
 	.modes {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: var(--space-4);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0 var(--space-7);
 		margin: var(--space-6) 0 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	.modes > li {
-		display: flex;
-		flex-direction: column;
-		padding: var(--space-6) var(--space-5);
-		border: 1px solid var(--ui-border);
-		border-radius: var(--radius-lg);
-		background: var(--surface);
-		transition: border-color 0.15s;
+	.modes li {
+		padding: var(--space-6) 0;
+		border-bottom: 1px solid var(--rule);
 	}
 
-	.modes > li:hover {
-		border-color: var(--accent);
-	}
-
-	.mode-head {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: var(--space-3);
-	}
-
-	.mode-head h3 {
+	.modes h3 {
 		margin-bottom: var(--space-3);
-		text-transform: uppercase;
-		letter-spacing: 0.02em;
 	}
 
-	.n {
-		font-family: var(--font-display);
-		font-size: var(--text-sm);
-		font-weight: 700;
-		color: var(--accent);
-	}
-
-	.modes p {
-		flex: 1;
-		color: var(--ui-muted-foreground);
+	.modes p:not(.tags) {
+		color: var(--text-muted);
 	}
 
 	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-2);
 		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.tags li {
-		padding: 0.15rem var(--space-2);
-		border-radius: var(--radius-sm);
-		background: var(--ui-muted);
-		color: var(--ui-foreground);
-		font-family: var(--font-display);
-		font-size: 0.75rem;
-		font-weight: 700;
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
-	}
-
-	.beta-section {
-		padding-bottom: var(--space-7);
+		color: var(--text-muted);
 	}
 
 	.beta {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		justify-content: space-between;
-		gap: var(--space-6);
-		padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
-		border-radius: var(--radius-lg);
-		background: var(--volt);
-		color: var(--night);
+		gap: var(--space-7);
+		padding: clamp(var(--space-6), 4vw, var(--space-9));
+		background: var(--action);
+		color: var(--action-text);
 	}
 
-	.beta .eyebrow {
-		color: var(--night);
+	.beta .label {
+		margin-bottom: var(--space-5);
+		color: var(--action-text);
 	}
 
 	.beta h2 {
-		margin-bottom: var(--space-3);
+		margin-bottom: var(--space-4);
 	}
 
-	.beta p:not(.eyebrow) {
-		max-width: 36rem;
+	.beta-text {
+		max-width: var(--measure);
 		margin: 0;
 	}
 
-	.btn-dark {
+	/* The beta panel is volt itself, so its action inverts. */
+	.btn-on-action {
+		border-color: var(--night);
 		background: var(--night);
 		color: var(--bone);
 	}
 
-	.btn-dark:hover {
-		background: #1c2027;
-	}
-
-	.game-footer {
-		border-top: 1px solid var(--ui-border);
-	}
-
-	.game-footer-inner {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-5);
-		padding-block: var(--space-6);
-	}
-
-	.game-footer img {
-		width: 9rem;
-		height: auto;
-	}
-
-	.game-footer nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-2) var(--space-5);
-	}
-
-	.game-footer a {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-1);
-		color: var(--ui-foreground);
-		font-size: var(--text-sm);
-		text-decoration: none;
-	}
-
-	.game-footer a:hover {
-		color: var(--accent);
+	.btn-on-action:hover {
+		background: var(--night-2);
 	}
 
 	@media (max-width: 960px) {
 		.about {
 			grid-template-columns: 1fr;
-		}
-
-		.modes {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
-
-	@media (max-width: 720px) {
-		.stats dl {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-
-		.stats div:nth-child(odd) {
-			border-left: 0;
-			padding-left: 0;
-		}
-
-		.stats div:nth-child(n + 3) {
-			border-top: 1px solid #23272e;
+			gap: var(--space-7);
 		}
 
 		.modes {
 			grid-template-columns: 1fr;
 		}
+	}
+
+	@media (max-width: 720px) {
+		.hero::after {
+			background: linear-gradient(
+				0deg,
+				var(--night) 20%,
+				color-mix(in srgb, var(--night) 75%, transparent) 65%,
+				color-mix(in srgb, var(--night) 35%, transparent) 100%
+			);
+		}
+
+		.readouts {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			margin-top: var(--space-8);
+		}
+
+		.readouts div:nth-child(3) {
+			padding-left: 0;
+			border-left: 0;
+		}
 
 		.beta {
 			flex-direction: column;
 			align-items: flex-start;
-		}
-
-		.hero::after {
-			background: linear-gradient(0deg, var(--night) 10%, rgb(11 13 16 / 0.75) 60%, rgb(11 13 16 / 0.35) 100%);
 		}
 	}
 </style>

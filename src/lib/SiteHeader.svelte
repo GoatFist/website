@@ -87,15 +87,14 @@
 		position: sticky;
 		top: 0;
 		z-index: 20;
-		background: color-mix(in srgb, var(--ui-background) 82%, transparent);
-		backdrop-filter: saturate(1.5) blur(12px);
-		border-bottom: 1px solid var(--ui-border);
+		background: var(--surface);
+		border-bottom: 1px solid var(--rule);
 	}
 
 	.bar {
 		display: flex;
 		align-items: center;
-		gap: var(--space-6);
+		gap: var(--space-7);
 		height: var(--header-height);
 	}
 
@@ -103,14 +102,12 @@
 		display: inline-flex;
 		flex-shrink: 0;
 		font-size: 2rem;
-		--logo-icon: var(--mark);
 	}
 
 	.links {
 		display: flex;
-		align-items: stretch;
 		align-self: stretch;
-		gap: var(--space-5);
+		gap: var(--space-6);
 		margin-left: auto;
 	}
 
@@ -118,19 +115,16 @@
 		position: relative;
 		display: inline-flex;
 		align-items: center;
-		color: var(--ui-muted-foreground);
-		font-family: var(--font-display);
+		color: var(--text-muted);
 		font-size: var(--text-sm);
-		font-weight: 600;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
+		font-weight: 500;
 		text-decoration: none;
 		white-space: nowrap;
 	}
 
 	.links a:hover,
 	.links a[aria-current='page'] {
-		color: var(--ui-foreground);
+		color: var(--text);
 	}
 
 	.links a[aria-current='page']::after {
@@ -138,7 +132,7 @@
 		position: absolute;
 		inset: auto 0 -1px;
 		height: 2px;
-		background: var(--accent);
+		background: var(--link);
 	}
 
 	.actions {
@@ -151,13 +145,13 @@
 	:global(.sheet-close) {
 		display: none;
 		place-items: center;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2.75rem;
+		height: 2.75rem;
 		padding: 0;
-		border: 1px solid var(--ui-border);
-		border-radius: var(--radius-md);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius-1);
 		background: transparent;
-		color: var(--ui-foreground);
+		color: var(--text);
 		cursor: pointer;
 	}
 
@@ -166,57 +160,55 @@
 	}
 
 	:global(.sheet-backdrop) {
-		background: rgb(0 0 0 / 0.5);
+		background: color-mix(in srgb, var(--night) 60%, transparent);
 	}
 
 	:global(.sheet) {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-6);
-		width: min(22rem, 88vw);
+		gap: var(--space-7);
+		width: min(24rem, 90vw);
 		height: 100%;
-		padding: var(--space-4) var(--gutter) var(--space-6);
-		background: var(--ui-background);
-		border-left: 1px solid var(--ui-border);
+		padding: 0 var(--gutter) var(--space-7);
+		background: var(--surface);
+		border-left: 1px solid var(--rule);
 	}
 
 	.sheet-head {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: calc(var(--header-height) - var(--space-4) * 2);
+		height: var(--header-height);
 	}
 
 	:global(.sheet-title) {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: var(--text-xs);
-		font-weight: 700;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--ui-muted-foreground);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--text-muted);
 	}
 
 	.sheet-links {
 		display: flex;
 		flex-direction: column;
+		border-top: 1px solid var(--rule);
 	}
 
 	.sheet-links a {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: var(--space-4) 0;
-		border-bottom: 1px solid var(--ui-border);
-		color: var(--ui-foreground);
+		padding: var(--space-5) 0;
+		border-bottom: 1px solid var(--rule);
+		color: var(--text);
 		font-family: var(--font-display);
 		font-size: var(--text-xl);
-		font-weight: 700;
+		font-weight: 500;
 		text-decoration: none;
 	}
 
 	.sheet-links a[aria-current='page'] {
-		color: var(--accent);
+		color: var(--link);
 	}
 
 	.sheet-theme {
@@ -226,7 +218,7 @@
 	.sheet-theme p {
 		margin-bottom: var(--space-3);
 		font-size: var(--text-sm);
-		color: var(--ui-muted-foreground);
+		color: var(--text-muted);
 	}
 
 	.sheet-theme :global([data-slot='segmented-control']) {

@@ -40,9 +40,9 @@
 		top: -4rem;
 		z-index: 30;
 		padding: var(--space-2) var(--space-3);
-		border-radius: var(--radius-sm);
-		background: var(--ui-primary);
-		color: var(--ui-primary-foreground);
+		border-radius: var(--radius-1);
+		background: var(--action);
+		color: var(--action-text);
 	}
 
 	.skip:focus {

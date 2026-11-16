@@ -36,19 +36,19 @@
 	:global(.theme-trigger) {
 		display: inline-grid;
 		place-items: center;
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2.75rem;
+		height: 2.75rem;
 		padding: 0;
-		border: 1px solid var(--ui-border);
-		border-radius: var(--radius-md);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius-1);
 		background: transparent;
-		color: var(--ui-foreground);
+		color: var(--text);
 		cursor: pointer;
 	}
 
 	:global(.theme-trigger:hover),
 	:global(.theme-trigger[data-open]) {
-		background: var(--ui-muted);
+		background: var(--surface-2);
 	}
 
 	/* The trigger shows the theme in effect, a sun on light pages and a moon on dark ones; the menu names the choice. */
