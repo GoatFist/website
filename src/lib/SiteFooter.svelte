@@ -38,7 +38,8 @@
 		{#if page.url.pathname.startsWith('/global-assault')}
 			<p class="note">
 				O Global Assault é um projeto da comunidade, sem fins lucrativos, e uma homenagem viva a um FPS clássico que saiu
-				do ar. Mantemos o jogo de pé para todo mundo jogar, de graça.
+				do ar. Mantemos o jogo de pé para todo mundo jogar, de graça. Não temos nenhum vínculo com as empresas que
+				criaram ou publicaram o jogo original.
 			</p>
 		{/if}
 		<div class="bottom">
