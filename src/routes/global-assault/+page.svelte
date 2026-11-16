@@ -3,7 +3,7 @@
 	import { discord, site } from '#lib/site.ts';
 
 	const description =
-		'Global Assault: o FPS online clássico, reconstruído pela GoatFist Interactive com foco no celular. Seis modos, servidores próprios e beta fechado no Android em breve.';
+		'Global Assault é o FPS online clássico, agora no celular. Seis modos, servidores próprios e beta fechado no Android em breve.';
 
 	// Facts from the game's tables (gam-server content/tables) and the beta plan (docs/BETA_ROADMAP.md).
 	const stats = [
@@ -14,64 +14,64 @@
 	];
 
 	const features = [
-		'Controles de toque feitos para este jogo',
-		'Partida rápida e salas personalizadas',
-		'Bots completam as vagas da partida',
-		'Servidor valida movimento, tiros e dano',
-		'Loja, inventário, mochilas e visuais',
-		'Amigos e chat dentro do jogo',
-		'Conteúdo novo sem baixar outro APK',
-		'Sem anúncios e sem rastreadores'
+		'Controles de toque que você pode ajustar',
+		'Partida rápida ou sala com os amigos',
+		'Bots entram quando falta gente',
+		'O servidor confere cada tiro',
+		'Loja, inventário e visuais',
+		'Lista de amigos e chat',
+		'Atualizações sem baixar o app de novo',
+		'Nenhum anúncio'
 	];
 
 	const modes = [
 		{
 			name: 'Mata-mata em equipe',
-			text: 'Ataque contra defesa com renascimento. Vence quem chegar primeiro ao limite de abates ou liderar quando o tempo acabar.',
+			text: 'Dois times, renascimento liberado. Ganha quem bater a meta de abates primeiro ou estiver na frente quando o tempo acabar.',
 			tags: ['Equipe', 'Renascimento']
 		},
 		{
 			name: 'Missão de bomba',
-			text: 'Rodadas sem renascimento: um lado planta a bomba, o outro defende ou desarma. A rodada acaba quando um time cai ou a bomba decide.',
+			text: 'Um time planta a bomba e o outro tenta impedir ou desarmar. Morreu, só volta na próxima rodada.',
 			tags: ['Equipe', 'Rodadas', 'Plantar/desarmar']
 		},
 		{
 			name: 'Sala de sniper',
-			text: 'Mata-mata em equipe em que a única arma principal permitida é o rifle de precisão.',
+			text: 'Mata-mata em equipe só com rifle de precisão. Quem erra o primeiro tiro costuma não ter o segundo.',
 			tags: ['Equipe', 'Regras']
 		},
 		{
 			name: 'Caçador-rei',
-			text: 'Uma sequência de abates coroa o Caçador-rei, que recebe a minigun. Derrube o rei antes que ele derrube o seu time.',
+			text: 'Quem faz uma sequência de abates vira o Caçador-rei e ganha uma minigun. O time adversário precisa derrubá-lo.',
 			tags: ['Equipe', 'Diversão']
 		},
 		{
 			name: 'Corrida armamentista',
-			text: 'Cada marca de abates entrega a próxima arma da escada, sem trocar de arma no caminho. Chegue ao fim antes do outro time.',
+			text: 'A cada tantos abates você ganha a próxima arma da lista e não pode trocar. Vence o time que chegar ao fim primeiro.',
 			tags: ['Equipe', 'Progressão']
 		},
 		{
 			name: 'Vampiro',
-			text: 'Caçadores contra vampiros. Quem cai vira vampiro, a fúria transforma um caçador em licano e uma estaca encerra a rodada de um vampiro.',
+			text: 'Caçadores contra vampiros. Quem morre vira vampiro. Um caçador com a fúria cheia vira licano, e a estaca tira um vampiro da rodada.',
 			tags: ['Rodadas', 'Infecção']
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>Global Assault — o FPS online clássico, mobile primeiro</title>
+	<title>Global Assault — o FPS clássico, agora no celular</title>
 	<meta name="description" content={description} />
 	<meta property="og:title" content="Global Assault" />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content="{site.url}/global-assault" />
-	<link rel="preload" as="image" href="/global-assault/hero-1920.webp" imagesrcset="/global-assault/hero-960.webp 960w, /global-assault/hero-1920.webp 1920w" imagesizes="100vw" />
+	<link rel="preload" as="image" href="/global-assault/key-art-1920.webp" imagesrcset="/global-assault/key-art-960.webp 960w, /global-assault/key-art-1920.webp 1920w" imagesizes="100vw" />
 </svelte:head>
 
 <section class="hero">
 	<img
 		class="art"
-		src="/global-assault/hero-1920.webp"
-		srcset="/global-assault/hero-960.webp 960w, /global-assault/hero-1920.webp 1920w"
+		src="/global-assault/key-art-1920.webp"
+		srcset="/global-assault/key-art-960.webp 960w, /global-assault/key-art-1920.webp 1920w"
 		sizes="100vw"
 		alt=""
 		width="1916"
@@ -80,12 +80,12 @@
 	<div class="wrap hero-inner">
 		<p class="pill"><span class="dot" aria-hidden="true"></span> Beta fechado em breve · Android</p>
 		<h1>
-			<img class="logotype" src="/global-assault/logotype.webp" alt="Global Assault" width="1200" height="400" />
+			<img class="logotype" src="/global-assault/logotype-gold.webp" alt="Global Assault" width="1200" height="315" />
 		</h1>
-		<p class="tagline">O FPS online clássico, reconstruído com foco no celular.</p>
+		<p class="tagline">O FPS clássico, agora no celular.</p>
 		<p class="lead">
-			A troca de tiros, os mapas e os modos que marcaram uma geração, com controles de toque, servidores próprios
-			e partidas online com bots completando as vagas.
+			Os mapas, as armas e os modos que muita gente jogou nos anos 2000, de volta com controles de toque e
+			servidores novos.
 		</p>
 		<div class="actions">
 			<a class="btn btn-primary" href={discord} target="_blank" rel="noopener">
@@ -111,10 +111,14 @@
 	<div class="wrap about">
 		<div>
 			<p class="eyebrow">O jogo</p>
-			<h2 id="about-title">Fiel ao clássico. Mobile primeiro.</h2>
+			<h2 id="about-title">O mesmo jogo, na palma da mão</h2>
 			<p class="lead">
-				Mantemos a sensação do original: o recuo das armas, o ritmo das partidas e as regras de cada modo. O que muda é
-				o que o celular pede: controles de toque, interface e uma rede nova, em que o servidor confere cada jogada. A base é a mesma para, no futuro, chegar também ao desktop.
+				O jeito como as armas atiram e o ritmo das partidas continuam iguais. Mudamos o que precisava mudar para jogar
+				no celular, como os controles e as telas.
+			</p>
+			<p class="lead">
+				Por trás, o servidor confere cada tiro, o que deixa a trapaça bem mais difícil. Começamos pelo celular, mas
+				nada impede uma versão para PC mais para frente.
 			</p>
 		</div>
 		<ul class="features">
@@ -129,7 +133,7 @@
 	<div class="wrap">
 		<p class="eyebrow">Combate</p>
 		<h2 id="modes-title">Modos de jogo</h2>
-		<p class="lead">Seis modos jogados online, do mata-mata clássico às rodadas de vampiro.</p>
+		<p class="lead">São seis modos, todos já testados em partidas online.</p>
 		<ol class="modes">
 			{#each modes as m, i (m.name)}
 				<li>
@@ -152,10 +156,10 @@
 		<div class="beta">
 			<div>
 				<p class="eyebrow">Beta fechado</p>
-				<h2 id="beta-title">Quer jogar primeiro?</h2>
+				<h2 id="beta-title">Quer jogar antes de todo mundo?</h2>
 				<p>
-					O beta fechado começa no Android com algumas centenas de jogadores convidados: conta, inventário e progresso
-					ficam salvos. Os convites e as novidades saem primeiro no nosso Discord.
+					O beta fechado vai começar no Android, com algumas centenas de jogadores convidados. Sua conta e seu
+					progresso ficam salvos. Os convites saem pelo Discord, então entra lá para não perder.
 				</p>
 			</div>
 			<a class="btn btn-dark" href={discord} target="_blank" rel="noopener">
@@ -167,7 +171,7 @@
 
 <section class="game-footer" aria-label="Global Assault">
 	<div class="wrap game-footer-inner">
-		<img src="/global-assault/logotype.webp" alt="Global Assault" width="240" height="80" />
+		<img src="/global-assault/logotype-gold.webp" alt="Global Assault" width="240" height="63" />
 		<nav aria-label="Global Assault">
 			<a href={discord} target="_blank" rel="noopener">Discord <Icon name="external" size={14} /></a>
 			<a href="/global-assault/privacy">Política de Privacidade</a>

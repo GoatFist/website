@@ -9,8 +9,8 @@
 	<div class="wrap">
 		<div class="top">
 			<div class="about">
-				<a class="brand" href="/" aria-label="GoatFist Interactive, início"><Logo /></a>
-				<p>Estúdio independente de jogos online. Fazendo Global Assault, um FPS online mobile primeiro.</p>
+				<a class="brand" href="/" aria-label="GOATFIST Interactive, início"><Logo /></a>
+				<p>Estúdio independente de jogos. Agora fazendo o Global Assault.</p>
 			</div>
 			{#each footerLinks as group (group.title)}
 				<nav aria-label={group.title}>
@@ -30,7 +30,7 @@
 			{/each}
 		</div>
 		<div class="bottom">
-			<p>© {year} GoatFist Interactive</p>
+			<p>© {year} GOATFIST Interactive</p>
 			<p>Sem cookies, anúncios ou rastreadores.</p>
 		</div>
 	</div>

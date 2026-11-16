@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>{page.status === 404 ? 'Página não encontrada' : 'Erro'} — GoatFist Interactive</title>
+	<title>{page.status === 404 ? 'Página não encontrada' : 'Erro'} — GOATFIST Interactive</title>
 </svelte:head>
 
 <section class="wrap error">

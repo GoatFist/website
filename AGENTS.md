@@ -15,7 +15,8 @@ the `global-assault` workspace (`GoatFist/global-assault`, submodule `website/`)
 
 ## Rules
 - No trackers, analytics, cookies or third-party requests (fonts and scripts are local).
-- Legal text is never invented: a document without its source is published as a draft, marked as one (`LegalPage` with `draft`).
+- Legal text says only what the game does: the privacy policy is written from what the servers and the client store (gam-server's
+  migrations, api and services); when the game starts handling data differently, the policy changes first.
 - `npm run check` and `npm run build` pass before a push (CI runs both); deploys are Dokploy's auto deploy from `main` (README).
 
 ## ui-sdk

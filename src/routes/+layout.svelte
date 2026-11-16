@@ -19,7 +19,10 @@
 	<link rel="canonical" href={site.url + page.url.pathname} />
 	<meta property="og:site_name" content={site.name} />
 	<meta property="og:locale" content="pt_BR" />
-	<meta property="og:image" content={site.url + '/brand/og-image.png'} />
+	<meta
+		property="og:image"
+		content={site.url + (page.url.pathname.startsWith('/global-assault') ? '/global-assault/og-image.png' : '/brand/og-image.png')}
+	/>
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 

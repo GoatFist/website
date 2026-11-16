@@ -30,8 +30,6 @@
 	--accent: light-dark(var(--olive), var(--volt));
 	--accent-soft: light-dark(#f6ffc2, #171b06);
 	--mark: light-dark(var(--night), var(--volt));
-	--draft: light-dark(#fdf6e3, #241f12);
-	--draft-border: light-dark(#c9a33f, #806d3e);
 
 	/* Type. */
 	--font-display: 'Oxanium Variable', ui-sans-serif, system-ui, sans-serif;

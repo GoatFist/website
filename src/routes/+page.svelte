@@ -4,7 +4,7 @@
 	import { site } from '#lib/site.ts';
 
 	const description =
-		'GoatFist Interactive é um estúdio independente de jogos. Estamos desenvolvendo Global Assault, um FPS online pensado primeiro para o celular.';
+		'A GOATFIST Interactive é um estúdio independente brasileiro. Estamos fazendo o Global Assault, um FPS online para jogar no celular.';
 
 	const facts = [
 		{ term: 'Gênero', value: 'FPS online' },
@@ -15,26 +15,26 @@
 	const values = [
 		{
 			n: '01',
-			title: 'Online de verdade',
-			text: 'Construímos nossos próprios servidores e a nossa entrega de conteúdo, para que as partidas sejam justas e o jogo continue evoluindo depois do lançamento.'
+			title: 'Servidor próprio',
+			text: 'Os servidores do jogo são nossos. Assim a gente cuida da qualidade das partidas e corrige bug e trapaça sem esperar ninguém.'
 		},
 		{
 			n: '02',
-			title: 'Mobile primeiro',
-			text: 'Controles, interface e desempenho pensados para a tela de toque desde o início, numa base que também pode chegar ao desktop.'
+			title: 'Celular primeiro',
+			text: 'Começamos pelo celular, com controles e telas pensados para jogar com os dedos. Uma versão para PC pode vir depois.'
 		},
 		{
 			n: '03',
-			title: 'Respeito ao jogador',
-			text: 'Sem anúncios e sem ferramentas de rastreamento. Coletamos apenas o que o jogo precisa para funcionar.'
+			title: 'Sem anúncio',
+			text: 'Nenhum anúncio no meio da partida e nenhuma ferramenta de rastreamento. O jogo guarda só o que precisa para funcionar.'
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>GoatFist Interactive — estúdio independente de jogos</title>
+	<title>GOATFIST Interactive — estúdio independente de jogos</title>
 	<meta name="description" content={description} />
-	<meta property="og:title" content="GoatFist Interactive" />
+	<meta property="og:title" content="GOATFIST Interactive" />
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content={site.url} />
 </svelte:head>
@@ -43,10 +43,10 @@
 	<div class="mark" aria-hidden="true"><Logo parts="icon" /></div>
 	<div class="wrap hero-inner">
 		<p class="eyebrow">Estúdio independente</p>
-		<h1>Jogos online feitos para jogar com os amigos.</h1>
+		<h1>Jogos de tiro para jogar com a galera.</h1>
 		<p class="lead">
-			Somos a GoatFist Interactive, um estúdio pequeno que faz jogos de ação competitivos. Nosso primeiro título é
-			<strong>Global Assault</strong>, um FPS online pensado primeiro para o celular.
+			A GOATFIST Interactive é um estúdio pequeno e independente. Nosso primeiro jogo é o
+			<strong>Global Assault</strong>, um FPS online que estamos levando para o celular.
 		</p>
 		<div class="actions">
 			<a class="btn btn-primary" href="/global-assault">Conheça Global Assault <Icon name="arrow" size={18} /></a>
@@ -61,11 +61,11 @@
 			<div class="game-copy">
 				<p class="eyebrow">Em desenvolvimento</p>
 				<h2 id="ga-title">
-					<img src="/global-assault/logotype.webp" alt="Global Assault" width="1200" height="400" />
+					<img src="/global-assault/logotype-gold.webp" alt="Global Assault" width="1200" height="315" />
 				</h2>
 				<p>
-					Tiroteio rápido em equipe, partidas curtas e controles pensados para a tela de toque. Servidores
-					próprios e o beta fechado chegando em breve.
+					Partidas rápidas em equipe, com os mapas e os modos de um FPS clássico. O beta fechado abre em breve
+					no Android.
 				</p>
 				<span class="more">Ver o jogo <Icon name="arrow" size={18} /></span>
 			</div>

@@ -31,7 +31,7 @@
 
 <header class="header">
 	<div class="wrap bar">
-		<a class="brand" href="/" aria-label="GoatFist Interactive, início">
+		<a class="brand" href="/" aria-label="GOATFIST Interactive, início">
 			<Logo parts="compact" />
 		</a>
 

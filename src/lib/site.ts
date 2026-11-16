@@ -1,5 +1,5 @@
 export const site = {
-	name: 'GoatFist Interactive',
+	name: 'GOATFIST Interactive',
 	url: 'https://goatfist.com'
 };
 
