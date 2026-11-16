@@ -1,0 +1,17 @@
+# The site (SvelteKit, adapter-node): built once, run as `node build` on port 3000.
+FROM node:24-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json .npmrc ./
+RUN --mount=type=cache,target=/root/.npm npm ci
+COPY . .
+RUN npm run build && npm prune --omit=dev
+
+FROM node:24-alpine
+WORKDIR /app
+ENV NODE_ENV=production PORT=3000
+COPY --from=build /app/build build/
+COPY --from=build /app/node_modules node_modules/
+COPY package.json ./
+USER node
+EXPOSE 3000
+CMD ["node", "build"]
