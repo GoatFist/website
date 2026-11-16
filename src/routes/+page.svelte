@@ -4,7 +4,7 @@
 	import { site } from '#lib/site.ts';
 
 	const description =
-		'GoatFist Interactive é um estúdio independente de jogos. Estamos desenvolvendo Global Assault, um FPS online para celular.';
+		'GoatFist Interactive é um estúdio independente de jogos. Estamos desenvolvendo Global Assault, um FPS online pensado primeiro para o celular.';
 
 	const facts = [
 		{ term: 'Gênero', value: 'FPS online' },
@@ -20,8 +20,8 @@
 		},
 		{
 			n: '02',
-			title: 'Feito para o celular',
-			text: 'Controles, interface e desempenho pensados para a tela de toque desde o início, não adaptados depois.'
+			title: 'Mobile primeiro',
+			text: 'Controles, interface e desempenho pensados para a tela de toque desde o início, numa base que também pode chegar ao desktop.'
 		},
 		{
 			n: '03',
@@ -46,7 +46,7 @@
 		<h1>Jogos online feitos para jogar com os amigos.</h1>
 		<p class="lead">
 			Somos a GoatFist Interactive, um estúdio pequeno que faz jogos de ação competitivos. Nosso primeiro título é
-			<strong>Global Assault</strong>, um FPS online para celular.
+			<strong>Global Assault</strong>, um FPS online pensado primeiro para o celular.
 		</p>
 		<div class="actions">
 			<a class="btn btn-primary" href="/global-assault">Conheça Global Assault <Icon name="arrow" size={18} /></a>

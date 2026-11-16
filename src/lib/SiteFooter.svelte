@@ -10,7 +10,7 @@
 		<div class="top">
 			<div class="about">
 				<a class="brand" href="/" aria-label="GoatFist Interactive, início"><Logo /></a>
-				<p>Estúdio independente de jogos online. Fazendo Global Assault, um FPS para celular.</p>
+				<p>Estúdio independente de jogos online. Fazendo Global Assault, um FPS online mobile primeiro.</p>
 			</div>
 			{#each footerLinks as group (group.title)}
 				<nav aria-label={group.title}>

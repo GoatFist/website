@@ -3,7 +3,7 @@
 	import { discord, site } from '#lib/site.ts';
 
 	const description =
-		'Global Assault: o FPS online clássico, reconstruído para o celular pela GoatFist Interactive. Seis modos, servidores próprios e beta fechado no Android em breve.';
+		'Global Assault: o FPS online clássico, reconstruído pela GoatFist Interactive com foco no celular. Seis modos, servidores próprios e beta fechado no Android em breve.';
 
 	// Facts from the game's tables (gam-server content/tables) and the beta plan (docs/BETA_ROADMAP.md).
 	const stats = [
@@ -59,7 +59,7 @@
 </script>
 
 <svelte:head>
-	<title>Global Assault — FPS online para celular</title>
+	<title>Global Assault — o FPS online clássico, mobile primeiro</title>
 	<meta name="description" content={description} />
 	<meta property="og:title" content="Global Assault" />
 	<meta property="og:description" content={description} />
@@ -82,7 +82,7 @@
 		<h1>
 			<img class="logotype" src="/global-assault/logotype.webp" alt="Global Assault" width="1200" height="400" />
 		</h1>
-		<p class="tagline">O FPS online clássico, reconstruído para o celular.</p>
+		<p class="tagline">O FPS online clássico, reconstruído com foco no celular.</p>
 		<p class="lead">
 			A troca de tiros, os mapas e os modos que marcaram uma geração, com controles de toque, servidores próprios
 			e partidas online com bots completando as vagas.
@@ -111,10 +111,10 @@
 	<div class="wrap about">
 		<div>
 			<p class="eyebrow">O jogo</p>
-			<h2 id="about-title">Fiel ao clássico. Feito para o toque.</h2>
+			<h2 id="about-title">Fiel ao clássico. Mobile primeiro.</h2>
 			<p class="lead">
 				Mantemos a sensação do original: o recuo das armas, o ritmo das partidas e as regras de cada modo. O que muda é
-				o que o celular pede: controles, interface e uma rede nova, em que o servidor confere cada jogada.
+				o que o celular pede: controles de toque, interface e uma rede nova, em que o servidor confere cada jogada. A base é a mesma para, no futuro, chegar também ao desktop.
 			</p>
 		</div>
 		<ul class="features">
