@@ -4,6 +4,7 @@ export const site = {
 };
 
 export const discord = 'https://dsc.gg/globalassault';
+export const x = { handle: '@GoatfistHQ', url: 'https://x.com/GoatfistHQ' };
 
 export const nav = [
 	{ href: '/global-assault', label: 'Global Assault' },
@@ -15,7 +16,8 @@ export const footerLinks = [
 		title: 'Estúdio',
 		links: [
 			{ href: '/', label: 'Início' },
-			{ href: '/#estudio', label: 'Como trabalhamos' }
+			{ href: '/#estudio', label: 'Como trabalhamos' },
+			{ href: x.url, label: `X ${x.handle}` }
 		]
 	},
 	{

@@ -4,7 +4,7 @@
 	import { page } from '$app/state';
 	import SiteFooter from '#lib/SiteFooter.svelte';
 	import SiteHeader from '#lib/SiteHeader.svelte';
-	import { site } from '#lib/site.ts';
+	import { site, x } from '#lib/site.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
@@ -24,6 +24,7 @@
 		content={site.url + (page.url.pathname.startsWith('/global-assault') ? '/global-assault/og-image.png' : '/brand/og-image.png')}
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content={x.handle} />
 </svelte:head>
 
 <a class="skip" href="#main">Pular para o conteúdo</a>
