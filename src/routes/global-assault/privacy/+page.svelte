@@ -48,6 +48,10 @@
 				app e passando o resultado por um hash. Esse código fica salvo de forma protegida no celular. O identificador
 				do aparelho em si nunca é enviado para nós.
 			</li>
+			<li>
+				Com o Discord (para entrar ou vinculado depois, em Configurações › Conta): guardamos só o número que identifica a
+				sua conta do Discord. Não guardamos seu e-mail, sua senha nem seus servidores do Discord.
+			</li>
 		</ul>
 		<p><strong>O que você faz no jogo.</strong></p>
 		<ul>
@@ -89,6 +93,7 @@
 		<h2>5. Para que usamos</h2>
 		<ul>
 			<li>criar e manter a sua conta e o seu login;</li>
+			<li>mostrar o seu perfil no nosso Discord, se você vincular a conta;</li>
 			<li>fazer as partidas, o progresso, a loja e os amigos funcionarem;</li>
 			<li>combater trapaça e abuso e aplicar as regras dos <a href="/global-assault/terms">Termos de Uso</a>;</li>
 			<li>encontrar e corrigir erros;</li>
@@ -107,6 +112,10 @@
 			<li>a empresa que hospeda o servidor onde o jogo e o banco de dados rodam;</li>
 			<li>a Cloudflare, que protege e entrega a conexão com a nossa API.</li>
 		</ul>
+		<p>
+			Se você vincular o Discord, o bot do nosso servidor no Discord pode mostrar, quando alguém pedir o seu perfil com
+			/profile, o seu apelido, nível, estatísticas de partidas e clã. Ele só lê esses dados, nunca os altera.
+		</p>
 		<p>
 			A Google Play distribui o app e o Discord hospeda a nossa comunidade. Cada um trata os seus dados conforme a
 			própria política de privacidade. Também podemos entregar dados a autoridades quando uma lei ou uma ordem
