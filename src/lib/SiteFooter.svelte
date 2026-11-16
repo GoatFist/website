@@ -17,7 +17,13 @@
 					<p class="title">{group.title}</p>
 					<ul>
 						{#each group.links as link (link.href)}
-							<li><a href={link.href}>{link.label}</a></li>
+							<li>
+								{#if link.href.startsWith('http')}
+									<a href={link.href} target="_blank" rel="noopener">{link.label} <span class="ext">↗</span></a>
+								{:else}
+									<a href={link.href}>{link.label}</a>
+								{/if}
+							</li>
 						{/each}
 					</ul>
 				</nav>
@@ -79,6 +85,11 @@
 	li a {
 		color: var(--ui-foreground);
 		text-decoration: none;
+	}
+
+	.ext {
+		color: var(--ui-muted-foreground);
+		font-size: 0.85em;
 	}
 
 	li a:hover {
