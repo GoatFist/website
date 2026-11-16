@@ -1,9 +1,34 @@
 <script lang="ts">
-	import { site } from '#lib/site.ts';
+	import Icon from '#lib/Icon.svelte';
 	import Logo from '#lib/Logo.svelte';
+	import { site } from '#lib/site.ts';
 
 	const description =
 		'GoatFist Interactive é um estúdio independente de jogos. Estamos desenvolvendo Global Assault, um FPS online para celular.';
+
+	const facts = [
+		{ term: 'Gênero', value: 'FPS online' },
+		{ term: 'Plataforma', value: 'Celular' },
+		{ term: 'Status', value: 'Beta fechado em breve' }
+	];
+
+	const values = [
+		{
+			n: '01',
+			title: 'Online de verdade',
+			text: 'Construímos nossos próprios servidores e a nossa entrega de conteúdo, para que as partidas sejam justas e o jogo continue evoluindo depois do lançamento.'
+		},
+		{
+			n: '02',
+			title: 'Feito para o celular',
+			text: 'Controles, interface e desempenho pensados para a tela de toque desde o início, não adaptados depois.'
+		},
+		{
+			n: '03',
+			title: 'Respeito ao jogador',
+			text: 'Sem anúncios e sem ferramentas de rastreamento. Coletamos apenas o que o jogo precisa para funcionar.'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -15,198 +40,226 @@
 </svelte:head>
 
 <section class="hero">
-	<div class="wrap grid">
-		<div>
-			<p class="eyebrow">Estúdio independente</p>
-			<h1>Jogos online feitos para jogar com os amigos.</h1>
-			<p class="lead">
-				Somos a GoatFist Interactive, um estúdio pequeno que faz jogos de ação competitivos. Nosso primeiro título é
-				<strong>Global Assault</strong>, um FPS online para celular.
-			</p>
-			<div class="actions">
-				<a class="cta" href="/global-assault">Conheça Global Assault</a>
-				<a class="cta secondary" href="#estudio">Sobre o estúdio</a>
-			</div>
+	<div class="mark" aria-hidden="true"><Logo parts="icon" /></div>
+	<div class="wrap hero-inner">
+		<p class="eyebrow">Estúdio independente</p>
+		<h1>Jogos online feitos para jogar com os amigos.</h1>
+		<p class="lead">
+			Somos a GoatFist Interactive, um estúdio pequeno que faz jogos de ação competitivos. Nosso primeiro título é
+			<strong>Global Assault</strong>, um FPS online para celular.
+		</p>
+		<div class="actions">
+			<a class="btn btn-primary" href="/global-assault">Conheça Global Assault <Icon name="arrow" size={18} /></a>
+			<a class="btn btn-secondary" href="#estudio">Sobre o estúdio</a>
 		</div>
-		<div class="mark"><Logo parts="icon" /></div>
 	</div>
 </section>
 
-<section class="wrap feature" aria-labelledby="ga-title">
-	<div class="card">
-		<div>
-			<p class="eyebrow">Em desenvolvimento</p>
-			<h2 id="ga-title">Global Assault</h2>
-			<p>
-				Tiroteio rápido em equipe, partidas curtas e controles pensados para a tela de toque. Um FPS
-				online para celular, com servidores próprios e o beta fechado chegando em breve.
-			</p>
-			<a href="/global-assault">Ver o jogo →</a>
-		</div>
-		<dl>
-			<div>
-				<dt>Gênero</dt>
-				<dd>FPS online</dd>
+<section class="section" aria-labelledby="ga-title">
+	<div class="wrap">
+		<a class="game" href="/global-assault">
+			<div class="game-copy">
+				<p class="eyebrow">Em desenvolvimento</p>
+				<h2 id="ga-title">
+					<img src="/global-assault/logotype.webp" alt="Global Assault" width="1200" height="400" />
+				</h2>
+				<p>
+					Tiroteio rápido em equipe, partidas curtas e controles pensados para a tela de toque. Servidores
+					próprios e o beta fechado chegando em breve.
+				</p>
+				<span class="more">Ver o jogo <Icon name="arrow" size={18} /></span>
 			</div>
-			<div>
-				<dt>Plataforma</dt>
-				<dd>Celular</dd>
-			</div>
-			<div>
-				<dt>Status</dt>
-				<dd>Beta fechado em breve</dd>
-			</div>
-		</dl>
+			<dl class="facts">
+				{#each facts as fact (fact.term)}
+					<div>
+						<dt>{fact.term}</dt>
+						<dd>{fact.value}</dd>
+					</div>
+				{/each}
+			</dl>
+		</a>
 	</div>
 </section>
 
-<section id="estudio" class="wrap studio" aria-labelledby="studio-title">
-	<p class="eyebrow">O estúdio</p>
-	<h2 id="studio-title">Como trabalhamos</h2>
-	<div class="values">
-		<article>
-			<h3>Online de verdade</h3>
-			<p>
-				Construímos nossos próprios servidores e a nossa entrega de conteúdo, para que as partidas
-				sejam justas e o jogo continue evoluindo depois do lançamento.
-			</p>
-		</article>
-		<article>
-			<h3>Feito para o celular</h3>
-			<p>
-				Controles, interface e desempenho pensados para a tela de toque desde o início, não adaptados
-				depois.
-			</p>
-		</article>
-		<article>
-			<h3>Respeito ao jogador</h3>
-			<p>
-				Sem anúncios e sem ferramentas de rastreamento. Coletamos apenas o que o jogo precisa para
-				funcionar, como explica a nossa <a href="/global-assault/privacy">política de privacidade</a>.
-			</p>
-		</article>
+<section id="estudio" class="section studio" aria-labelledby="studio-title">
+	<div class="wrap">
+		<p class="eyebrow">O estúdio</p>
+		<h2 id="studio-title">Como trabalhamos</h2>
+		<ol class="values">
+			{#each values as v (v.n)}
+				<li>
+					<span class="n">{v.n}</span>
+					<h3>{v.title}</h3>
+					<p>{v.text}</p>
+				</li>
+			{/each}
+		</ol>
 	</div>
 </section>
 
 <style>
 	.hero {
-		padding-block: clamp(3rem, 9vw, 7rem) clamp(2.5rem, 6vw, 4.5rem);
-		background:
-			radial-gradient(60rem 30rem at 85% 10%, var(--accent-soft), transparent 70%),
-			var(--ui-background);
+		position: relative;
+		overflow: hidden;
+		padding-block: clamp(4rem, 3rem + 8vw, 9rem);
 		border-bottom: 1px solid var(--ui-border);
-	}
-
-	.grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-		align-items: center;
-		gap: 3rem;
+		background:
+			radial-gradient(45rem 28rem at 78% 30%, var(--accent-soft), transparent 70%),
+			var(--ui-background);
 	}
 
 	.mark {
-		justify-self: center;
-		font-size: clamp(10rem, 22vw, 17rem);
-		--logo-icon: var(--ember);
+		position: absolute;
+		right: max(-6rem, calc((100vw - var(--content)) / 2 - 4rem));
+		top: 50%;
+		translate: 0 -50%;
+		font-size: clamp(16rem, 34vw, 30rem);
+		--logo-icon: var(--mark);
+		pointer-events: none;
 	}
 
-	h1 {
-		font-size: clamp(2.3rem, 6.5vw, 4.25rem);
-		font-weight: 800;
-		letter-spacing: -0.035em;
+	.hero-inner {
+		position: relative;
+	}
+
+	.hero h1 {
+		max-width: 13ch;
 	}
 
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-top: 2rem;
+		gap: var(--space-3);
+		margin-top: var(--space-6);
 	}
 
-	.feature {
-		margin-top: clamp(2.5rem, 6vw, 4.5rem);
-	}
-
-	.card {
+	.game {
 		display: grid;
-		grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-		gap: 2.5rem;
-		padding: clamp(1.5rem, 4vw, 2.75rem);
+		grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+		gap: var(--space-7);
+		align-items: center;
+		padding: clamp(1.5rem, 1rem + 3vw, 3rem);
 		border: 1px solid var(--ui-border);
-		border-radius: calc(var(--ui-radius) * 3);
+		border-radius: var(--radius-lg);
 		background: var(--surface);
+		color: inherit;
+		text-decoration: none;
+		transition: border-color 0.15s;
 	}
 
-	.card h2 {
-		font-size: clamp(1.8rem, 4vw, 2.5rem);
+	.game:hover {
+		border-color: var(--accent);
 	}
 
-	.card a {
-		font-weight: 600;
+	.game h2 {
+		max-width: 26rem;
+		margin-bottom: var(--space-5);
 	}
 
-	dl {
+	.game h2 img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.game-copy p:not(.eyebrow) {
+		color: var(--ui-muted-foreground);
+		max-width: 34rem;
+	}
+
+	.more {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		color: var(--accent);
+		font-family: var(--font-display);
+		font-size: var(--text-sm);
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.facts {
 		display: grid;
-		gap: 1rem;
+		gap: var(--space-5);
 		margin: 0;
-		align-content: center;
 	}
 
-	dl div {
-		padding-left: 1rem;
+	.facts div {
+		padding-left: var(--space-4);
 		border-left: 2px solid var(--accent);
 	}
 
 	dt {
-		font-size: 0.8rem;
+		font-size: var(--text-xs);
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
 		color: var(--ui-muted-foreground);
 	}
 
 	dd {
 		margin: 0;
-		font-weight: 650;
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 700;
 	}
 
 	.studio {
-		margin-top: clamp(3.5rem, 8vw, 6rem);
-	}
-
-	.studio h2 {
-		font-size: clamp(1.7rem, 3.5vw, 2.25rem);
+		padding-top: 0;
 	}
 
 	.values {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-		gap: 1.5rem;
-		margin-top: 1.5rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-5);
+		margin: var(--space-6) 0 0;
+		padding: 0;
+		list-style: none;
 	}
 
-	.values article {
-		padding: 1.5rem;
-		border-radius: calc(var(--ui-radius) * 2);
-		background: var(--ui-muted);
+	.values li {
+		padding: var(--space-6) var(--space-5);
+		border-top: 2px solid var(--ui-border);
 	}
 
-	.values h3 {
-		font-size: 1.15rem;
+	.n {
+		display: block;
+		margin-bottom: var(--space-4);
+		font-family: var(--font-display);
+		font-size: var(--text-sm);
+		font-weight: 700;
+		color: var(--accent);
 	}
 
 	.values p {
-		color: var(--ui-muted-foreground);
 		margin: 0;
+		color: var(--ui-muted-foreground);
+	}
+
+	/* Beside the headline only where the two can't meet; behind it as a watermark below that. */
+	@media (max-width: 1180px) {
+		.mark {
+			opacity: 0.1;
+			right: -5rem;
+		}
+	}
+
+	@media (max-width: 900px) {
+
+		.values {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.values li {
+			padding-inline: 0;
+		}
 	}
 
 	@media (max-width: 760px) {
-		.grid,
-		.card {
+		.game {
 			grid-template-columns: 1fr;
-		}
-
-		.mark {
-			display: none;
+			gap: var(--space-6);
 		}
 	}
 </style>

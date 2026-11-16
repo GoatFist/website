@@ -107,7 +107,7 @@
 		width: 0.55rem;
 		height: 0.55rem;
 		border-radius: 50%;
-		background: var(--ember);
+		background: var(--accent);
 	}
 
 	.features {
@@ -120,15 +120,21 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-		gap: 1.25rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
 		margin-top: 1.5rem;
 	}
 
+	@media (max-width: 640px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	article {
-		padding: 1.5rem;
+		padding: var(--space-6);
 		border: 1px solid var(--ui-border);
-		border-radius: calc(var(--ui-radius) * 2);
+		border-radius: var(--radius-md);
 		background: var(--surface);
 	}
 

@@ -12,7 +12,7 @@
 	<p class="lead">
 		{page.status === 404 ? 'O endereço não existe ou mudou de lugar.' : 'Tente de novo em instantes.'}
 	</p>
-	<a class="cta" href="/">Voltar ao início</a>
+	<a class="btn btn-primary" href="/">Voltar ao início</a>
 </section>
 
 <style>

@@ -10,7 +10,7 @@ the `global-assault` workspace (`GoatFist/global-assault`, submodule `website/`)
   favicons, og image and lockups (copied from `brand/dist/`). The brand kit (`GoatFist/brand`, `brand/` in the workspace) is their source:
   rebuild there and copy, never edit the copies.
 - `src/app.css`: the tokens (the brand palette mapped onto ui-sdk's `--ui-*`), light and dark through `light-dark()`; `data-theme` on
-  `<html>` forces one (`src/lib/ThemeSwitch.svelte`, set before paint in `src/app.html`).
+  `<html>` forces one (`src/lib/theme.svelte.ts`, chosen in `ThemeMenu` and the mobile menu, set before paint in `src/app.html`).
 - Server-side configuration, when a page needs it, goes through `src/env.ts` (`defineEnvVars`, read with `$app/env/private`), not `$env/dynamic`.
 
 ## Rules

@@ -41,7 +41,7 @@
 	.draft {
 		padding: 1rem 1.15rem;
 		border: 1px solid var(--draft-border);
-		border-radius: calc(var(--ui-radius) * 2);
+		border-radius: var(--radius-md);
 		background: var(--draft);
 	}
 
