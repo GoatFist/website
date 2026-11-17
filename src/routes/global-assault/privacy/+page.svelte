@@ -63,25 +63,28 @@
 			<li>quando você aceitou estes termos e esta política, e em qual versão.</li>
 		</ul>
 		<p><strong>Proteção contra trapaça.</strong> Para manter as partidas justas, o jogo confere se o app é o original e
-			se está rodando sem ferramentas de trapaça. Ele envia ao servidor:</p>
+			se está rodando sem ferramentas de trapaça. Para isso usamos:</p>
 		<ul>
-			<li>a versão e a assinatura do app e um resumo (hash) dos arquivos do próprio jogo;</li>
 			<li>
-				o que roda dentro do processo do jogo: o nome de bibliotecas de código que não deveriam estar lá, quantas áreas de
-				memória executável sem arquivo existem, o nome das threads do jogo, se há um depurador conectado e amostras do
-				relógio do jogo, para ver se ele bate com o do servidor;
+				<strong>Integridade do aplicativo:</strong> a versão e a assinatura do app e a verificação de que os arquivos do jogo
+				não foram alterados.
 			</li>
 			<li>
-				sinais do ambiente do aparelho: se há marcas de emulador, de root ou de apps que clonam outros apps ("espaço
-				virtual"). Para isso o jogo confere se alguns arquivos do sistema existem e lê algumas propriedades do Android
-				(como as que dizem se o sistema é um emulador). Quem joga em emulador é colocado em partidas com outros jogadores
-				de emulador.
+				<strong>Informações técnicas do processo do jogo:</strong> sinais de ferramentas de trapaça ou de depuração atuando
+				sobre o jogo.
+			</li>
+			<li>
+				<strong>Ambiente do aparelho:</strong> sinais de emulador, root ou app clonador, usados para formar partidas justas
+				(quem joga em emulador joga com outros jogadores de emulador).
+			</li>
+			<li>
+				<strong>Estatísticas e eventos da partida</strong> registrados pelo servidor, como ações recusadas por serem
+				impossíveis (um tiro através da parede, um movimento impossível).
 			</li>
 		</ul>
-		<p>O servidor também anota ações que ele recusou numa partida (um tiro através da parede, um movimento impossível) e
-			as estatísticas de cada partida. Esses sinais ficam ligados à sua conta, não identificam você fora do jogo, perdem o
-			peso com o tempo e são apagados em até 180 dias. A proteção não olha nada fora do processo do jogo: não lê a lista de
-			apps instalados, seus arquivos, seus contatos nem a sua localização.</p>
+		<p>Esses sinais ficam ligados à sua conta, não identificam você fora do jogo, perdem o peso com o tempo e são apagados em
+			até 180 dias. A proteção olha somente dentro do processo do jogo: não lê a lista de apps instalados, seus arquivos,
+			seus contatos nem a sua localização.</p>
 		<p><strong>Beta fechado.</strong> Se você pedir acesso com o comando <code>/beta</code> no nosso Discord, guardamos o número
 			da sua conta do Discord, o seu nome de usuário lá e o código de acesso gerado, para liberar o beta na sua conta.</p>
 		<p>
