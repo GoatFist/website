@@ -14,7 +14,7 @@
 
 <!-- Written from what the game stores (gam-server's migrations, api and services; the Android platform library) as of 2026-11-16.
      /global-assault/privacy-policy.html, the policy's first address, redirects here. -->
-<LegalPage title="Política de Privacidade" updated="16 de novembro de 2026">
+<LegalPage title="Política de Privacidade" updated="17 de novembro de 2026">
 	<section>
 		<p>
 			Esta página explica quais dados o Global Assault usa, para que servem e o que você pode pedir para a gente. A
@@ -59,8 +59,16 @@
 			<li>estatísticas e histórico de partidas: modo, mapa, time, abates, mortes e pontos;</li>
 			<li>lista de amigos e pedidos de amizade, clã e curtidas recebidas;</li>
 			<li>replays das partidas, guardados por 14 dias;</li>
-			<li>punições aplicadas à conta, com o motivo.</li>
+			<li>punições aplicadas à conta, com o motivo;</li>
+			<li>quando você aceitou estes termos e esta política, e em qual versão.</li>
 		</ul>
+		<p><strong>Proteção contra trapaça.</strong> Para manter as partidas justas, o jogo confere se o app é o original e
+			se está rodando sem ferramentas de trapaça: a versão e a assinatura do app, se há um depurador ou um emulador e se o
+			relógio do aparelho bate com o do servidor. O servidor também anota ações que ele recusou numa partida (um tiro
+			através da parede, um movimento impossível). Esses sinais ficam ligados à sua conta, não identificam você fora do
+			jogo e são apagados em até 180 dias.</p>
+		<p><strong>Beta fechado.</strong> Se você pedir acesso com o comando <code>/beta</code> no nosso Discord, guardamos o número
+			da sua conta do Discord, o seu nome de usuário lá e o código de acesso gerado, para liberar o beta na sua conta.</p>
 		<p>
 			Não pedimos e-mail, nome verdadeiro, telefone, localização nem acesso aos seus contatos, fotos ou arquivos.
 		</p>
@@ -137,8 +145,10 @@
 			<li>Os dados da conta e do jogo ficam enquanto a conta existir.</li>
 			<li>Os logins expiram em 30 dias sem uso.</li>
 			<li>Replays e registros técnicos são apagados em até 14 dias.</li>
+			<li>Os sinais da proteção contra trapaça são apagados em até 180 dias.</li>
 			<li>
-				Quando você pede a exclusão da conta, apagamos os dados em até 30 dias. O registro de um banimento pode ser
+				Quando você exclui a conta no jogo, os dados são apagados na hora; nas partidas de outros jogadores, o seu
+				lugar fica como "Jogador removido". Um pedido por e-mail é atendido em até 30 dias. O registro de um banimento pode ser
 				mantido por mais tempo, só para impedir que a mesma pessoa volte a trapacear.
 			</li>
 		</ul>
@@ -146,7 +156,7 @@
 
 	<section>
 		<h2>9. Seus direitos</h2>
-		<p>Pela LGPD, você pode nos pedir para:</p>
+		<p>Pela LGPD (e, se você estiver na União Europeia ou no Reino Unido, pelo GDPR), você pode:</p>
 		<ul>
 			<li>confirmar se temos dados seus e ver quais são;</li>
 			<li>corrigir o que estiver errado;</li>
@@ -155,10 +165,11 @@
 			<li>saber com quem eles foram compartilhados.</li>
 		</ul>
 		<p>
-			Basta escrever para <a href="mailto:privacy@goatfist.com">privacy@goatfist.com</a> com o seu apelido e, se
+			No próprio jogo, em Configurações › Conta › Privacidade e dados, você baixa uma cópia de tudo o que guardamos e
+			exclui a sua conta na hora. Para o resto, basta escrever para <a href="mailto:privacy@goatfist.com">privacy@goatfist.com</a> com o seu apelido e, se
 			tiver, o nome de usuário. Podemos pedir alguma informação a mais para ter certeza de que a conta é sua.
 			Respondemos em até 15 dias. Se não ficar satisfeito, você também pode reclamar com a Autoridade Nacional de
-			Proteção de Dados (ANPD).
+			Proteção de Dados (ANPD) ou, fora do Brasil, com a autoridade de proteção de dados do seu país.
 		</p>
 	</section>
 
