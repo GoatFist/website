@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Icon from './Icon.svelte';
+	import LanguageMenu from './LanguageMenu.svelte';
 	import Logo from './Logo.svelte';
-	import { i18n, locales, localizePath, stripLocale } from './i18n/index.ts';
+	import { i18n, stripLocale } from './i18n/index.ts';
 	import { discord, x } from './site.ts';
 
 	const t = $derived(i18n());
 	const year = new Date().getFullYear();
+
 	const groups = $derived([
 		{
 			title: t.m.footer.studio,
@@ -59,13 +61,11 @@
 		{#if stripLocale(page.url.pathname).startsWith('/global-assault')}
 			<p class="note">{t.m.footer.note}</p>
 		{/if}
-		<nav class="langs" aria-label={t.m.common.language}>
-			{#each locales as locale (locale.code)}
-				<a href={localizePath(stripLocale(page.url.pathname), locale)} lang={locale.code} hreflang={locale.code} aria-current={locale.code === t.locale.code ? 'true' : undefined}>{locale.label}</a>
-			{/each}
-		</nav>
 		<div class="bottom">
-			<p>© {year} GOATFIST Interactive</p>
+			<div class="start">
+				<p>© {year} GOATFIST Interactive</p>
+				<LanguageMenu footer />
+			</div>
 			<p>{t.m.footer.noTracking}</p>
 		</div>
 	</div>
@@ -142,31 +142,6 @@
 		line-height: 1.6;
 	}
 
-	.langs {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-2) var(--space-5);
-		padding-block: var(--space-5);
-		border-top: 1px solid var(--rule);
-		font-size: var(--text-sm);
-	}
-
-	.langs a {
-		color: var(--text-muted);
-		text-decoration: none;
-	}
-
-	.langs a:hover {
-		color: var(--text);
-		text-decoration: underline;
-		text-underline-offset: 0.25em;
-	}
-
-	.langs a[aria-current='true'] {
-		color: var(--text);
-		font-weight: 600;
-	}
-
 	.bottom {
 		display: flex;
 		flex-wrap: wrap;
@@ -178,8 +153,19 @@
 		font-size: var(--text-xs);
 	}
 
+	.bottom {
+		align-items: center;
+	}
+
 	.bottom p {
 		margin: 0;
+	}
+
+	.start {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-2) var(--space-5);
 	}
 
 	@media (max-width: 760px) {

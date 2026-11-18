@@ -14,6 +14,10 @@
 	const t = $derived(i18n());
 	// the page with its language prefix taken off, so every version can be named
 	const path = $derived(stripLocale(page.url.pathname));
+	// the server writes <html lang>; a language switch in the browser keeps it in step
+	$effect(() => {
+		document.documentElement.lang = t.locale.code;
+	});
 </script>
 
 <svelte:head>

@@ -1,40 +1,38 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import {
-		Menu,
-		MenuContent,
-		MenuItemIndicator,
-		MenuRadioGroup,
-		MenuRadioItem,
-		MenuTrigger
-	} from '@ui-sdk/svelte/menu';
+	import { Menu, MenuContent, MenuItem, MenuTrigger } from '@ui-sdk/svelte/menu';
 	import Icon from './Icon.svelte';
 	import { i18n, locales, localizePath, stripLocale } from './i18n/index.ts';
 
-	const t = $derived(i18n());
+	// `footer`: the language's name and a chevron, opening upward (the footer's last line); otherwise the header's globe and code.
+	let { footer = false }: { footer?: boolean } = $props();
 
-	/** The same page in another language (the hash kept). */
-	const pathIn = (code: string) => {
-		const target = locales.find((l) => l.code === code) ?? locales[0];
-		return localizePath(stripLocale(page.url.pathname), target) + page.url.hash;
-	};
+	const t = $derived(i18n());
+	const pathIn = (locale: (typeof locales)[number]) => localizePath(stripLocale(page.url.pathname), locale) + page.url.hash;
 </script>
 
+<!-- Items are links, kept mounted while closed, so every version of the page is a link search engines follow. -->
 <Menu>
-	<MenuTrigger class="lang-trigger" aria-label="{t.m.common.language}: {t.locale.label}">
-		<Icon name="globe" />
-		<span class="code">{t.locale.prefix || 'pt'}</span>
+	<MenuTrigger class="lang-trigger" data-footer={footer || undefined} aria-label="{t.m.common.language}: {t.locale.label}">
+		<Icon name="globe" size={footer ? 16 : 20} />
+		{#if footer}
+			<span>{t.locale.label}</span>
+			<Icon name="chevron" size={14} />
+		{:else}
+			<span class="code">{t.locale.prefix || 'pt'}</span>
+		{/if}
 	</MenuTrigger>
-	<MenuContent class="lang-menu">
-		<MenuRadioGroup value={t.locale.code} onValueChange={(code) => goto(pathIn(code))}>
-			{#each locales as locale (locale.code)}
-				<MenuRadioItem value={locale.code} closeOnSelect>
-					<span lang={locale.code}>{locale.label}</span>
-					<MenuItemIndicator />
-				</MenuRadioItem>
-			{/each}
-		</MenuRadioGroup>
+	<MenuContent class="lang-menu" keepMounted side={footer ? 'top' : 'bottom'} align={footer ? 'start' : 'end'} sideOffset={8}>
+		{#each locales as locale (locale.code)}
+			<MenuItem>
+				{#snippet render({ props })}
+					<a {...props} href={pathIn(locale)} lang={locale.code} hreflang={locale.code} aria-current={locale.code === t.locale.code ? 'true' : undefined}>
+						{locale.label}
+						{#if locale.code === t.locale.code}<Icon name="check" size={14} />{/if}
+					</a>
+				{/snippet}
+			</MenuItem>
+		{/each}
 	</MenuContent>
 </Menu>
 
@@ -52,9 +50,22 @@
 		cursor: pointer;
 	}
 
+	:global(.lang-trigger[data-footer]) {
+		gap: var(--space-2);
+		font-size: var(--text-sm);
+	}
+
 	:global(.lang-trigger:hover),
 	:global(.lang-trigger[data-open]) {
 		background: var(--surface-2);
+	}
+
+	:global(.lang-trigger[data-footer] svg:last-child) {
+		transition: rotate 0.15s;
+	}
+
+	:global(.lang-trigger[data-footer][data-open] svg:last-child) {
+		rotate: 180deg;
 	}
 
 	.code {
@@ -66,6 +77,19 @@
 	}
 
 	:global(.lang-menu) {
-		min-width: 10rem;
+		min-width: 11rem;
+	}
+
+	:global(.lang-menu a) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-3);
+		color: inherit;
+		text-decoration: none;
+	}
+
+	:global(.lang-menu a[aria-current='true']) {
+		font-weight: 600;
 	}
 </style>
