@@ -1,11 +1,4 @@
-		{#if stripLocale(page.url.pathname).startsWith('/global-assault')}
-			<p class="note">{t.m.footer.note}</p>
-		{/if}
-		<nav class="langs" aria-label={t.m.common.language}>
-			{#each locales as locale (locale.code)}
-				<a href={localizePath(stripLocale(page.url.pathname), locale)} lang={locale.code} hreflang={locale.code} aria-current={locale.code === t.locale.code ? 'true' : undefined}>{locale.label}</a>
-			{/each}
-		</nav><script lang="ts">
+<script lang="ts">
 	import { page } from '$app/state';
 	import Icon from './Icon.svelte';
 	import Logo from './Logo.svelte';
@@ -63,13 +56,14 @@
 				</nav>
 			{/each}
 		</div>
-		{#if page.url.pathname.startsWith('/global-assault')}
-			<p class="note">
-				O Global Assault é um projeto da comunidade, sem fins lucrativos, e uma homenagem viva a um FPS clássico que saiu
-				do ar. Mantemos o jogo de pé para todo mundo jogar, de graça. Não temos nenhum vínculo com as empresas que
-				criaram ou publicaram o jogo original.
-			</p>
+		{#if stripLocale(page.url.pathname).startsWith('/global-assault')}
+			<p class="note">{t.m.footer.note}</p>
 		{/if}
+		<nav class="langs" aria-label={t.m.common.language}>
+			{#each locales as locale (locale.code)}
+				<a href={localizePath(stripLocale(page.url.pathname), locale)} lang={locale.code} hreflang={locale.code} aria-current={locale.code === t.locale.code ? 'true' : undefined}>{locale.label}</a>
+			{/each}
+		</nav>
 		<div class="bottom">
 			<p>© {year} GOATFIST Interactive</p>
 			<p>{t.m.footer.noTracking}</p>
