@@ -1,10 +1,7 @@
 export type Theme = 'system' | 'light' | 'dark';
 
-export const themes: { value: Theme; label: string }[] = [
-	{ value: 'system', label: 'Sistema' },
-	{ value: 'light', label: 'Claro' },
-	{ value: 'dark', label: 'Escuro' }
-];
+/** The choices; their words are each language's `common.themes` (src/lib/i18n). */
+export const themes: Theme[] = ['system', 'light', 'dark'];
 
 // `src/app.html` applies the saved choice before the first paint; this mirrors it for the controls.
 export const theme = $state<{ value: Theme }>({ value: 'system' });

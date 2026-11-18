@@ -1,17 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { i18n } from '#lib/i18n/index.ts';
+
+	const t = $derived(i18n());
+	const m = $derived(t.m.error);
+	const missing = $derived(page.status === 404);
 </script>
 
 <svelte:head>
-	<title>{page.status === 404 ? 'Página não encontrada' : 'Erro'} — GOATFIST Interactive</title>
+	<title>{missing ? m.notFoundTitle : m.errorTitle} — GOATFIST Interactive</title>
 </svelte:head>
 
 <section class="wrap error">
-	<h1>{page.status === 404 ? 'Página não encontrada.' : 'Algo deu errado.'}</h1>
+	<h1>{missing ? m.notFound : m.failed}</h1>
 	<p class="lead">
-		{page.status === 404 ? 'O endereço não existe ou mudou de lugar.' : 'Tente de novo em instantes.'}
+		{missing ? m.notFoundLead : m.failedLead}
 	</p>
-	<a class="btn" href="/">Voltar ao início</a>
+	<a class="btn" href={t.href('/')}>{m.back}</a>
 </section>
 
 <style>

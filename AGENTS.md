@@ -11,11 +11,18 @@ the `global-assault` workspace (`GoatFist/global-assault`, submodule `website/`)
   rebuild there and copy, never edit the copies.
 - `src/app.css`: the tokens (the brand palette mapped onto ui-sdk's `--ui-*`), light and dark through `light-dark()`; `data-theme` on
   `<html>` forces one (`src/lib/theme.svelte.ts`, chosen in `ThemeMenu` and the mobile menu, set before paint in `src/app.html`).
+- Languages (`src/lib/i18n`): the game's six (pt-BR at the root, then `/en`, `/es`, `/ru`, `/ko`, `/zh`, the `lang` param in
+  `src/params.ts`; every page lives under `src/routes/[[lang=lang]]`). The words are one typed dictionary per language
+  (`src/lib/i18n/messages/<locale>.ts`, shaped by `pt-BR.ts`: a missing key fails `npm run check`); the root layout loads only the page's
+  language, and components read it with `const t = $derived(i18n())` (`t.m...`, `t.href('/path')` for links that stay in the language).
+  The legal pages' bodies are components per language (`src/lib/legal/<page>/<locale>.svelte`); Portuguese is the original and the
+  translations say so. A new page or string is written in every language in the same change; `<html lang>` (hooks.server.ts),
+  `hreflang` and `og:locale` follow the page's language.
 - Server-side configuration, when a page needs it, goes through `src/env.ts` (`defineEnvVars`, read with `$app/env/private`), not `$env/dynamic`.
 
 ## Rules
 - No trackers, analytics, cookies or third-party requests (fonts and scripts are local).
-- Legal text says only what the game does: the privacy policy is written from what the servers and the client store (gam-server's
+- Legal text says only what the game does (in every language: change all six together): the privacy policy is written from what the servers and the client store (gam-server's
   migrations, api and services); when the game starts handling data differently, the policy changes first.
 - `npm run check` and `npm run build` pass before a push (CI runs both); deploys are Dokploy's auto deploy from `main` (README).
 

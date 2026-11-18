@@ -6,10 +6,14 @@
 	import SiteHeader from '#lib/SiteHeader.svelte';
 	import ogGame from '#lib/assets/og-global-assault.png';
 	import ogStudio from '#lib/assets/og-studio.png';
+	import { i18n, locales, localizePath, stripLocale } from '#lib/i18n/index.ts';
 	import { site, x } from '#lib/site.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
+	const t = $derived(i18n());
+	// the page with its language prefix taken off, so every version can be named
+	const path = $derived(stripLocale(page.url.pathname));
 </script>
 
 <svelte:head>
@@ -20,16 +24,21 @@
 	<meta name="theme-color" content="#0b0d10" />
 	<link rel="canonical" href={site.url + page.url.pathname} />
 	<meta property="og:site_name" content={site.name} />
-	<meta property="og:locale" content="pt_BR" />
+	<meta property="og:locale" content={t.locale.og} />
+	{#each locales as locale (locale.code)}
+		<link rel="alternate" hreflang={locale.code} href={site.url + localizePath(path, locale)} />
+		{#if locale.code !== t.locale.code}<meta property="og:locale:alternate" content={locale.og} />{/if}
+	{/each}
+	<link rel="alternate" hreflang="x-default" href={site.url + path} />
 	<meta
 		property="og:image"
-		content={site.url + (page.url.pathname.startsWith('/global-assault') ? ogGame : ogStudio)}
+		content={site.url + (path.startsWith('/global-assault') ? ogGame : ogStudio)}
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content={x.handle} />
 </svelte:head>
 
-<a class="skip" href="#main">Pular para o conteúdo</a>
+<a class="skip" href="#main">{t.m.common.skip}</a>
 <SiteHeader />
 <main id="main">
 	{@render children()}

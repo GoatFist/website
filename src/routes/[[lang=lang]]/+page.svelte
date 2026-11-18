@@ -1,46 +1,32 @@
 <script lang="ts">
 	import Icon from '#lib/Icon.svelte';
 	import Logo from '#lib/Logo.svelte';
+	import { i18n } from '#lib/i18n/index.ts';
 	import { site } from '#lib/site.ts';
 
-	const description =
-		'A GOATFIST Interactive é um estúdio independente brasileiro. Estamos fazendo o Global Assault, um FPS online para jogar no celular.';
-
-	const values = [
-		{
-			title: 'Servidor próprio',
-			text: 'Os servidores do jogo são nossos. Assim a gente cuida da qualidade das partidas e corrige bug e trapaça sem esperar ninguém.'
-		},
-		{
-			title: 'Celular primeiro',
-			text: 'Começamos pelo celular, com controles e telas pensados para jogar com os dedos. Uma versão para PC pode vir depois.'
-		},
-		{
-			title: 'Sem anúncio',
-			text: 'Nenhum anúncio no meio da partida e nenhuma ferramenta de rastreamento. O jogo guarda só o que precisa para funcionar.'
-		}
-	];
+	const t = $derived(i18n());
+	const m = $derived(t.m.home);
 </script>
 
 <svelte:head>
-	<title>GOATFIST Interactive — estúdio independente de jogos</title>
-	<meta name="description" content={description} />
+	<title>{m.title}</title>
+	<meta name="description" content={m.description} />
 	<meta property="og:title" content="GOATFIST Interactive" />
-	<meta property="og:description" content={description} />
-	<meta property="og:url" content={site.url} />
+	<meta property="og:description" content={m.description} />
+	<meta property="og:url" content={site.url + t.href('/')} />
 </svelte:head>
 
 <section class="hero">
 	<div class="wrap hero-grid">
 		<div class="hero-copy">
-			<h1>Jogos online para jogar com a galera.</h1>
+			<h1>{m.heading}</h1>
 			<p class="lead">
-				A GOATFIST Interactive é um estúdio pequeno e independente. Nosso primeiro jogo é o
-				<strong>Global Assault</strong>, um FPS online que estamos levando para o celular.
+				{m.leadBefore}
+				<strong>Global Assault</strong>{m.leadAfter}
 			</p>
 			<div class="actions">
-				<a class="btn" href="/global-assault">Conheça Global Assault <Icon name="arrow" size={18} /></a>
-				<a class="link-arrow" href="#estudio">Sobre o estúdio</a>
+				<a class="btn" href={t.href('/global-assault')}>{m.seeGame} <Icon name="arrow" size={18} /></a>
+				<a class="link-arrow" href="#estudio">{m.aboutStudio}</a>
 			</div>
 		</div>
 		<div class="mark" aria-hidden="true"><Logo parts="icon" /></div>
@@ -62,19 +48,17 @@
 		<h2 id="ga-title">
 			<img src="/global-assault/logotype-gold.webp" alt="Global Assault" width="1200" height="315" loading="lazy" />
 		</h2>
-		<p class="facts">FPS online · Celular · Beta fechado em breve</p>
-		<p>
-			Partidas rápidas em equipe, com os mapas e os modos de um FPS clássico. O beta fechado abre em breve no Android.
-		</p>
-		<a class="link-arrow on-art" href="/global-assault">Ver o jogo <Icon name="arrow" size={18} /></a>
+		<p class="facts">{m.gameFacts}</p>
+		<p>{m.gameText}</p>
+		<a class="link-arrow on-art" href={t.href('/global-assault')}>{m.viewGame} <Icon name="arrow" size={18} /></a>
 	</div>
 </section>
 
 <section id="estudio" class="section" aria-labelledby="studio-title">
 	<div class="wrap studio">
-		<h2 id="studio-title">Como trabalhamos</h2>
+		<h2 id="studio-title">{m.howWeWork}</h2>
 		<div class="rows">
-			{#each values as v (v.title)}
+			{#each m.values as v (v.title)}
 				<article>
 					<h3>{v.title}</h3>
 					<p>{v.text}</p>

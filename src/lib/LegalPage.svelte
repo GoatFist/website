@@ -1,18 +1,27 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { page } from '$app/state';
+	import { baseLocale, i18n, localizePath, stripLocale } from './i18n/index.ts';
 
 	let {
 		title,
 		updated,
 		children
 	}: { title: string; updated?: string; children: Snippet } = $props();
+	const t = $derived(i18n());
 </script>
 
 <article class="wrap legal">
 	<header>
-		<p class="kicker">Global Assault</p>
+		<p class="kicker">{t.m.legal.kicker}</p>
 		<h1>{title}</h1>
-		{#if updated}<p class="date">Última atualização: <time>{updated}</time></p>{/if}
+		{#if updated}<p class="date">{t.m.legal.updated} <time>{updated}</time></p>{/if}
+		{#if t.locale.code !== baseLocale.code}
+			<p class="translation">
+				{t.m.legal.translation}
+				<a href={localizePath(stripLocale(page.url.pathname), baseLocale)} lang={baseLocale.code}>{t.m.legal.translationLink}</a>.
+			</p>
+		{/if}
 	</header>
 	{@render children()}
 </article>
@@ -46,6 +55,12 @@
 
 	.date {
 		color: var(--text-muted);
+	}
+
+	.translation {
+		margin-top: var(--space-3);
+		color: var(--text-muted);
+		font-size: var(--text-sm);
 	}
 
 	.legal :global(section) {

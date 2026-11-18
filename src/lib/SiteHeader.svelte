@@ -15,66 +15,83 @@
 		SegmentedControlItem
 	} from '@ui-sdk/svelte/segmented-control';
 	import Icon from './Icon.svelte';
+	import LanguageMenu from './LanguageMenu.svelte';
 	import Logo from './Logo.svelte';
 	import ThemeMenu from './ThemeMenu.svelte';
+	import { i18n, locales, localizePath, stripLocale } from './i18n/index.ts';
 	import { nav } from './site.ts';
 	import { readTheme, setTheme, theme, themes, type Theme } from './theme.svelte.ts';
+
+	const t = $derived(i18n());
 
 	let open = $state(false);
 
 	$effect(readTheme);
 	afterNavigate(() => (open = false));
 
-	const current = (href: string) =>
-		href === '/' ? page.url.pathname === '/' : page.url.pathname.startsWith(href.split('#')[0]) && !href.includes('#');
+	const current = (href: string) => {
+		const path = stripLocale(page.url.pathname);
+		return href === '/' ? path === '/' : path.startsWith(href.split('#')[0]) && !href.includes('#');
+	};
 </script>
 
 <header class="header">
 	<div class="wrap bar">
-		<a class="brand" href="/" aria-label="GOATFIST Interactive, início">
+		<a class="brand" href={t.href('/')} aria-label={t.m.common.home}>
 			<Logo parts="compact" />
 		</a>
 
-		<nav class="links" aria-label="Principal">
+		<nav class="links" aria-label={t.m.common.mainNav}>
 			{#each nav as item (item.href)}
-				<a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>{item.label}</a>
+				<a href={t.href(item.href)} aria-current={current(item.href) ? 'page' : undefined}>{t.m.nav[item.key]}</a>
 			{/each}
 		</nav>
 
 		<div class="actions">
+			<span class="wide-only"><LanguageMenu /></span>
 			<ThemeMenu />
 			<Drawer side="right" bind:open>
-				<DrawerTrigger class="menu-trigger" aria-label="Abrir menu">
+				<DrawerTrigger class="menu-trigger" aria-label={t.m.common.openMenu}>
 					<Icon name="menu" />
 				</DrawerTrigger>
 				<DrawerBackdrop class="sheet-backdrop" />
 				<DrawerContent class="sheet">
 					<div class="sheet-head">
-						<DrawerTitle class="sheet-title">Menu</DrawerTitle>
-						<DrawerClose class="sheet-close" aria-label="Fechar menu">
+						<DrawerTitle class="sheet-title">{t.m.common.menu}</DrawerTitle>
+						<DrawerClose class="sheet-close" aria-label={t.m.common.closeMenu}>
 							<Icon name="close" />
 						</DrawerClose>
 					</div>
-					<nav class="sheet-links" aria-label="Principal">
+					<nav class="sheet-links" aria-label={t.m.common.mainNav}>
 						{#each nav as item (item.href)}
-							<a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>
-								{item.label}
+							<a href={t.href(item.href)} aria-current={current(item.href) ? 'page' : undefined}>
+								{t.m.nav[item.key]}
 								<Icon name="arrow" size={18} />
 							</a>
 						{/each}
 					</nav>
 					<div class="sheet-theme">
-						<p id="sheet-theme-label">Tema</p>
+						<p id="sheet-theme-label">{t.m.common.theme}</p>
 						<SegmentedControl
 							aria-labelledby="sheet-theme-label"
 							value={theme.value}
 							onValueChange={(value) => setTheme(value as Theme)}
 						>
 							<SegmentedControlIndicator />
-							{#each themes as t (t.value)}
-								<SegmentedControlItem value={t.value}>{t.label}</SegmentedControlItem>
+							{#each themes as value (value)}
+								<SegmentedControlItem {value}>{t.m.common.themes[value]}</SegmentedControlItem>
 							{/each}
 						</SegmentedControl>
+					</div>
+					<div class="sheet-langs">
+						<p>{t.m.common.language}</p>
+						<ul>
+							{#each locales as locale (locale.code)}
+								<li>
+									<a href={localizePath(stripLocale(page.url.pathname), locale)} lang={locale.code} aria-current={locale.code === t.locale.code ? 'true' : undefined}>{locale.label}</a>
+								</li>
+							{/each}
+						</ul>
 					</div>
 				</DrawerContent>
 			</Drawer>
@@ -229,8 +246,47 @@
 		flex: 1;
 	}
 
+	.sheet-langs {
+		margin-top: var(--space-6);
+	}
+
+	.sheet-langs p {
+		margin-bottom: var(--space-3);
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+	}
+
+	.sheet-langs ul {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.sheet-langs a {
+		display: block;
+		padding: var(--space-2) var(--space-3);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius-1);
+		color: var(--text);
+		font-size: var(--text-sm);
+		text-decoration: none;
+	}
+
+	.sheet-langs a[aria-current='true'] {
+		border-color: var(--link);
+		color: var(--link);
+	}
+
+	.wide-only {
+		display: contents;
+	}
+
 	@media (max-width: 720px) {
-		.links {
+		.links,
+		.wide-only {
 			display: none;
 		}
 

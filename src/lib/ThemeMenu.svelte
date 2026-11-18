@@ -9,22 +9,25 @@
 		MenuTrigger
 	} from '@ui-sdk/svelte/menu';
 	import Icon from './Icon.svelte';
+	import { i18n } from './i18n/index.ts';
 	import { setTheme, theme, themes, type Theme } from './theme.svelte.ts';
+
+	const t = $derived(i18n());
 
 	const icons = { system: 'monitor', light: 'sun', dark: 'moon' } as const;
 </script>
 
 <Menu>
-	<MenuTrigger class="theme-trigger" aria-label="Tema: {themes.find((t) => t.value === theme.value)?.label}">
+	<MenuTrigger class="theme-trigger" aria-label="{t.m.common.theme}: {t.m.common.themes[theme.value]}">
 		<span class="light-icon"><Icon name="sun" /></span>
 		<span class="dark-icon"><Icon name="moon" /></span>
 	</MenuTrigger>
 	<MenuContent class="theme-menu">
 		<MenuRadioGroup value={theme.value} onValueChange={(value) => setTheme(value as Theme)}>
-			{#each themes as t (t.value)}
-				<MenuRadioItem value={t.value} closeOnSelect>
-					<MenuItemIcon><Icon name={icons[t.value]} size={16} /></MenuItemIcon>
-					{t.label}
+			{#each themes as value (value)}
+				<MenuRadioItem {value} closeOnSelect>
+					<MenuItemIcon><Icon name={icons[value]} size={16} /></MenuItemIcon>
+					{t.m.common.themes[value]}
 					<MenuItemIndicator />
 				</MenuRadioItem>
 			{/each}
